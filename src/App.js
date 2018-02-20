@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import './css/normalize.css';
 import './css/pure.css';
-import './css/side-bar.css'
-import './index.css'
+import './css/side-bar.css';
+import './index.css';
+import $ from 'jquery';
 class App extends Component {
+
+  constructor(){
+    super();
+    this.state = {lista:[]}
+
+  }
+
   render() {
     return (
       <div id="layout">

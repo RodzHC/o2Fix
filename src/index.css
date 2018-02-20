@@ -14,8 +14,7 @@ body {
 
 }
 
-.tabela-nomes{
-  display: block;
-margin-left: auto;
-margin-right: auto;
+.pure-table{
+  text-align: center;
+  width: 100% ;
 }
