@@ -3,7 +3,9 @@ import './css/normalize.css';
 import './css/pure.css';
 import './css/side-bar.css'
 import './index.css'
+import Form from './cadastro/Form.js';
 class App extends Component {
+
   render() {
     return (
       <div id="layout">
@@ -33,25 +35,7 @@ class App extends Component {
             </div>
             <div className="content" id="content">
               <div className="pure-form pure-form-aligned">
-                <form className="pure-form pure-form-aligned form-1">
-                  <div className="pure-control-group">
-                    <label htmlFor="nome">Nome</label>
-                    <input id="nome" type="text" name="nome" value=""  />
-                  </div>
-                  <div className="pure-control-group">
-                    <label htmlFor="email">Email</label>
-                    <input id="email" type="email" name="email" value=""  />
-                  </div>
-                  <div className="pure-control-group">
-                    <label htmlFor="senha">Senha</label>
-                    <input id="senha" type="password" name="senha"  />
-                  </div>
-                  <div className="pure-control-group">
-                    <label></label>
-                    <button type="submit" className="pure-button pure-button-primary">Gravar</button>
-                  </div>
-                </form>
-
+              <Form/>
               </div>
               <div className="tabela-nomes">
                 <table className="pure-table">
