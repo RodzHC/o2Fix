@@ -46,12 +46,12 @@ router.route('/cadastro')
     })
     .post(function (req,res) {
       var temp = new cadastro ();
-      // temp.nome = req.body.nome;
-      // temp.email = req.body.email;
-      // temp.senha = req.body.senha;
-      temp.nome = "Rodrigo";
-      temp.email = "rodrigo.marzullo@gmail.com";
-      temp.senha = "senha";
+      temp.nome = req.body.nome;
+      temp.email = req.body.email;
+      temp.senha = req.body.senha;
+      // temp.nome = "Rodrigo";
+      // temp.email = "rodrigo.marzullo@gmail.com";
+      // temp.senha = "senha";
       temp.save(function(err) {
         if(err){res.send(err);}
         res.json({ message: 'Cadastro efetuado com sucesso !' });

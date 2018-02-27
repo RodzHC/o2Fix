@@ -38,22 +38,7 @@ export default class Form extends Component{
       beforeSend: function(){
         PubSub.publish("limpa-erros",{});
       }
-    });
-      // console.log(mongoose);
-      // mongoose.connect('mongodb://192.168.0.83/dev');
-      // var db = mongoose.connection;
-      // db.on('error', console.error.bind(console, 'connection error:'));
-      // db.once('open', function() {
-      // var cadastroSchema = mongoose.Schema({
-      //   nome: String ,
-      //   email: String,
-      //   password:String,
-      //   });
-      // var cadastro = mongoose.model('cadastro', cadastroSchema);
-      //
-      // let temp = new cadastro({nome:this.state.nome,email:this.state.email,senha:this.state.senha});
-      // temp.save(function(err){if(err){return console.log(err)}});
-
+    });    
 }
 
    setNome(evento){
