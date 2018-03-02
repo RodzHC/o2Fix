@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PubSub from 'pubsub-js';
 import $ from 'jquery';
 import TratadorErros from  '../TratadorErros';
-import InputCustomizado from '../componentes/InputCustomizado';
+import InputCustomizado from './InputCustomizado';
 export default class FormComponent extends Component{
 
    constructor(){
