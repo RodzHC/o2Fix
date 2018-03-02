@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PubSub from 'pubsub-js';
 import $ from 'jquery';
 import TratadorErros from  '../TratadorErros';
-
-export default class Form extends Component{
+import InputCustomizado from '../componentes/InputCustomizado';
+export default class FormComponent extends Component{
 
    constructor(){
      super();
@@ -31,14 +31,16 @@ export default class Form extends Component{
         this.setState({nome:'',email:'',senha:''});
       }.bind(this),
       error: function(resposta){
+
         if(resposta.status === 400) {
+          console.log(resposta.responseJSON);
           new TratadorErros().publicaErros(resposta.responseJSON);
         }
       },
       beforeSend: function(){
         PubSub.publish("limpa-erros",{});
       }
-    });    
+    });
 }
 
    setNome(evento){
@@ -58,29 +60,19 @@ export default class Form extends Component{
 
   render(){
     return (
-      <form className="pure-form pure-form-aligned form-1" onSubmit={this.enviaForm} method="post">
-        <div className="pure-control-group">
-          <label htmlFor="nome">Nome</label>
-          <input id="nome" type="text" name="nome" value={this.state.nome} onChange={this.setNome}  />
-        </div>
-        <div className="pure-control-group">
-          <label htmlFor="email">Email</label>
-          <input id="email" type="email" name="email" value={this.state.email} onChange={this.setEmail}  />
-        </div>
-        <div className="pure-control-group">
-          <label htmlFor="senha">Senha</label>
-          <input id="senha" type="password" name="senha" value={this.state.senha} onChange={this.setSenha}  />
-        </div>
-        <div className="pure-control-group">
-          <label htmlFor="senhaCheck">Confirme Senha</label>
-          <input id="senhaCheck" type="password" name="senhaCheck" value={this.state.senhaCheck} onChange={this.setSenhaCheck} />
-        </div>
-        <div className="pure-control-group">
-          <label></label>
-          <button type="submit" className="pure-button pure-button-primary">Criar Conta</button>
-        </div>
-      </form>
+      <div>
+        <form className="pure-form pure-form-aligned form-1" onSubmit={this.enviaForm} method="post">
+          <InputCustomizado id="nome" type="text" name="nome" value={this.state.nome} onChange={this.setNome} label="Nome"/>
+          <InputCustomizado id="email" type="email" name="email" value={this.state.email} onChange={this.setEmail} label="Email"/>
+          <InputCustomizado id="senha" type="password" name="senha" value={this.state.senha} onChange={this.setSenha} label="Senha"/>
+          <InputCustomizado id="senhaCheck" type="password" name="senhaCheck" value={this.state.senhaCheck} onChange={this.setSenhaCheck} label="Confime a Senha"/>
+           <div className="pure-control-group">
+             <label></label>
+             <button type="submit" className="pure-button pure-button-primary">Criar Conta</button>
+           </div>
 
+        </form>
+      </div>
     )
   }
 }

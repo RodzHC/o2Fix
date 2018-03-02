@@ -3,7 +3,7 @@ import './css/normalize.css';
 import './css/pure.css';
 import './css/side-bar.css'
 import './index.css'
-import Form from './cadastro/Form.js';
+import FormComponent from './cadastro/FormComponent.js';
 class App extends Component {
 
   render() {
@@ -35,7 +35,7 @@ class App extends Component {
             </div>
             <div className="content" id="content">
               <div className="pure-form pure-form-aligned">
-              <Form/>
+              <FormComponent/>
               </div>
               <div className="tabela-nomes">
                 <table className="pure-table">

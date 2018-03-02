@@ -5,6 +5,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cadastro = require('./model/cadastro.js');
+var expressValidator = require('express-validator');
 //Criando instancias
 var app = express();
 var router = express.Router();
@@ -26,6 +27,8 @@ app.use(function(req, res, next) {
  res.setHeader('Cache-Control', 'no-cache');
  next();
 });
+app.use(expressValidator());
+
 var port = process.env.API_PORT || 3001;
 mongoose.connect('mongodb://localhost/dev');
 
@@ -45,6 +48,27 @@ router.route('/cadastro')
       cadastro.find(function(err,pessoas){if(err){res.send(err);}res.json(pessoas);});
     })
     .post(function (req,res) {
+
+
+
+      req.assert('nome', 'Nome Obrigatório').notEmpty();
+      req.assert('email', 'E-mail Obrigatório').notEmpty();
+      req.assert('senha', 'Senha Obrigatória').notEmpty();
+      req.assert('senhaCheck', 'Preenchimento obrigatório').notEmpty();
+
+      var errors = req.validationErrors();
+
+      if(errors){
+
+					res.format({
+
+							json: function() {
+									res.status(400).json(errors);
+							}
+            });
+            return;
+          }
+
       var temp = new cadastro ();
       temp.nome = req.body.nome;
       temp.email = req.body.email;
