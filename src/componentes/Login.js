@@ -7,12 +7,12 @@ export default class FormComponent extends Component{
 
    constructor(){
      super();
-     this.state={nome:'',email:'',senha:'',senhaCheck:''};
+     this.state={email:'',senha:''};
      this.enviaForm = this.enviaForm.bind(this);
-     this.setNome = this.setNome.bind(this);
+
      this.setEmail = this.setEmail.bind(this);
      this.setSenha = this.setSenha.bind(this);
-     this.setSenhaCheck= this.setSenhaCheck.bind(this);
+
    }
 
    enviaForm(evento){
@@ -20,7 +20,7 @@ export default class FormComponent extends Component{
      evento.preventDefault();
 
      $.ajax({
-      url:'http://localhost:3001/api/cadastro',
+      url:'http://localhost:3001/api/login',
       contentType:'application/json',
       dataType:'json',
       type:'post',
@@ -43,9 +43,6 @@ export default class FormComponent extends Component{
     });
 }
 
-   setNome(evento){
-     this.setState({nome:evento.target.value});
-   }
 
    setEmail(evento){
      this.setState({email:evento.target.value});
@@ -54,21 +51,17 @@ export default class FormComponent extends Component{
    setSenha(evento){
      this.setState({senha:evento.target.value});
    }
-   setSenhaCheck(evento){
-     this.setState({senhaCheck:evento.target.value});
-   }
+
 
   render(){
     return (
       <div className="teste">
-        <form className="pure-form pure-form-aligned " onSubmit={this.enviaForm} method="post">
-          <InputCustomizado id="nome" type="text" name="nome" value={this.state.nome} onChange={this.setNome} label="Nome"/>
+        <form className="pure-form pure-form-aligned" onSubmit={this.enviaForm} method="post">
           <InputCustomizado id="email" type="email" name="email" value={this.state.email} onChange={this.setEmail} label="Email"/>
           <InputCustomizado id="senha" type="password" name="senha" value={this.state.senha} onChange={this.setSenha} label="Senha"/>
-          <InputCustomizado id="senhaCheck" type="password" name="senhaCheck" value={this.state.senhaCheck} onChange={this.setSenhaCheck} label="Confime a Senha"/>
            <div className="pure-control-group">
              <label></label>
-             <button type="submit" className="pure-button pure-button-primary">Criar Conta</button>
+             <button type="submit" className="pure-button pure-button-primary">Login</button>
            </div>
 
         </form>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './css/normalize.css';
 import './css/pure.css';
+import './css/bootstrap-theme.css';
 import './css/side-bar.css'
 import './index.css'
 

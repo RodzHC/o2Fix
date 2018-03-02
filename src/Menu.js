@@ -18,8 +18,8 @@ export default class Menu extends Component {
 
                     <ul className="pure-menu-list">
                         <li className="pure-menu-item"><Link href="#" className="pure-menu-link" to='/'>Home</Link></li>
-                        <li className="pure-menu-item"><Link href="#" className="pure-menu-link" to='/cadastro'>Cadastro</Link></li>
-                        <li className="pure-menu-item"><Link href="#" className="pure-menu-link" to='diretores'>Diretores</Link></li>
+                        <li className="pure-menu-item"><Link href="#" className="pure-menu-link" to='/cadastro'>Login</Link></li>
+                        <li className="pure-menu-item"><Link href="#" className="pure-menu-link" to='/diretores'>Diretores</Link></li>
 
 
                     </ul>
