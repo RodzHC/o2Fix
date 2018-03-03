@@ -1,11 +1,9 @@
-var mongoose = require('mongoose');
-
-
+var mongoose = require("mongoose");
 
 var cadastroDiretoresSchema = mongoose.Schema({
-  diretorNome: String ,
+  diretorNome: String,
   diretorDataNascimento: Date,
-  diretorNacionalidade:String,
-  });
+  diretorNacionalidade: String
+});
 
-module.exports = mongoose.model('cadastroDiretores', cadastroDiretoresSchema);
+module.exports = mongoose.model("cadastroDiretores", cadastroDiretoresSchema);

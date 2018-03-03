@@ -1,11 +1,9 @@
-var mongoose = require('mongoose');
-
-
+var mongoose = require("mongoose");
 
 var cadastroSchema = mongoose.Schema({
-  nome: String ,
+  nome: String,
   email: String,
-  senha:String,
-  });
+  senha: String
+});
 
-module.exports = mongoose.model('cadastro', cadastroSchema);
+module.exports = mongoose.model("cadastro", cadastroSchema);

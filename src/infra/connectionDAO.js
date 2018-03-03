@@ -1,9 +1,5 @@
-function DiretoresDAO(connection){
-  this._connection = connection ;
-
+function DiretoresDAO(connection) {
+  this._connection = connection;
 }
 
-DiretoresDAO.prototype.salva = function(callback){
-
-
-}
+DiretoresDAO.prototype.salva = function(callback) {};
