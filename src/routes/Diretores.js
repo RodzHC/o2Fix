@@ -4,14 +4,15 @@ import React, { Component } from 'react';
 import PubSub from 'pubsub-js';
 import TratadorErros from '../TratadorErros'
 
-class FormularioLivro extends Component {
+class FormularioDiretores extends Component {
+
   constructor(props) {
     super(props);
     this.state = {diretorNome: '', diretorDataNascimento: '', diretorNacionalidade: ''};
     this.setDiretorNome = this.setDiretorNome.bind(this);
     this.setDiretorDataNascimento = this.setDiretorDataNascimento.bind(this);
     this.setDiretorNacionalidade= this.setDiretorNacionalidade.bind(this);
-    this.handleLivroSubmit = this.handleLivroSubmit.bind(this);
+    this.handleDiretoresSubmit = this.handleDiretoresSubmit.bind(this);
   }
 
   setDiretorNome(e) {
@@ -27,21 +28,21 @@ class FormularioLivro extends Component {
   }
 
 
-  handleLivroSubmit(e) {
+  handleDiretoresSubmit(e) {
     e.preventDefault();
-    var titulo = this.state.titulo.trim();
-    var preco = this.state.preco.trim();
-    var autorId = this.state.autorId;
+    var diretorNome = this.state.diretorNome.trim();
+    var diretorDataNascimento = this.state.diretorDataNascimento.trim();
+    var diretorNacionalidade = this.state.diretorNacionalidade;
 
     $.ajax({
-      url: 'http://localhost:3001/api/livros',
+      url: 'http://localhost:3001/api/diretores',
       contentType: 'application/json',
       dataType: 'json',
       type: 'POST',
-      data: JSON.stringify({titulo:titulo,preco:preco,autorId:autorId}),
+      data: JSON.stringify({diretorNome:diretorNome,diretorDataNascimento:diretorDataNascimento,diretorNacionalidade:diretorNacionalidade}),
       success: function(novaListagem) {
           PubSub.publish( 'atualiza-lista-livros',novaListagem);
-          this.setState({titulo:'',preco:'',autorId:''});
+          this.setState({diretorNome:'',diretorDataNascimento:'',diretorNacionalidade:''});
       },
       error: function(resposta){
         if(resposta.status === 400){
@@ -53,11 +54,11 @@ class FormularioLivro extends Component {
       }
     });
 
-    this.setState({titulo: '', preco: '', autorId: ''});
+    this.setState({diretorNome: '', diretorDataNascimento: '', diretorNacionalidade: ''});
   }
 
   render() {
-    var autores = this.props.autores.map(function(autor){
+    var diretores = this.props.diretores.map(function(autor){
       return <option key={autor.id} value={autor.id}>{autor.nome}</option>;
     });
     return (
@@ -66,9 +67,9 @@ class FormularioLivro extends Component {
           <InputCustomizado id="diretorNome" name="diretorNome" label="Nome do diretor: " type="text" value={this.state.diretorNome} placeholder="Nome do diretor" onChange={this.setDiretorNome} />
           <InputCustomizado id="diretorDataNascimento" name="diretorDataNascimento" label="Data de nascimento: " type="date" value={this.state.diretorDataNascimento}  onChange={this.setDiretorDataNascimento} />
           <div className="pure-controls">
-            <select value={this.state.autorId} name="autorId" onChange={this.setAutorId}>
+            <select value={this.state.diretorNacionalidade} name="diretorNacionalidade" onChange={this.setdiretorNacionalidade}>
               <option value="">Selecione</option>
-              {autores}
+              {diretores}
             </select>
           </div>
           <div className="pure-control-group">
@@ -81,15 +82,15 @@ class FormularioLivro extends Component {
   }
 }
 
-class TabelaLivros extends Component {
+class TabelaDiretores extends Component {
 
   render() {
     var livros = this.props.lista.map(function(livro){
       return(
-          <tr key={livro.titulo}>
-            <td>{livro.titulo}</td>
-            <td>{livro.autor.nome}</td>
-            <td>{livro.preco}</td>
+          <tr key={livro.diretorNome}>
+            <td>{livro.diretorNome}</td>
+            <td>{livro.diretorNacionalidade.nome}</td>
+            <td>{livro.diretorDataNascimento}</td>
           </tr>
         );
       });
@@ -97,9 +98,9 @@ class TabelaLivros extends Component {
       <table className="pure-table">
         <thead>
           <tr>
-            <th>Titulo</th>
+            <th>diretorNome</th>
             <th>Autor</th>
-            <th>Preco</th>
+            <th>diretorDataNascimento</th>
           </tr>
         </thead>
         <tbody>
@@ -110,31 +111,25 @@ class TabelaLivros extends Component {
   }
 }
 
-export default class LivroAdmin extends Component {
+export default class DiretoresAdmin extends Component {
   constructor(props) {
     super(props);
-    this.state = {lista : [],autores:[]};
+    this.state = {diretores:[]};
   }
 
   componentDidMount() {
+
+
     $.ajax({
-      url: "http://localhost:3001/api/livros",
+      url: "http://localhost:3001/api/diretores",
       dataType: 'json',
-      success: function(data) {
-        this.setState({lista: data});
+      success: function(lista) {
+        this.setState({diretores: lista});
       }.bind(this)
     });
 
-    $.ajax({
-      url: "http://localhost:3001/api/autores",
-      dataType: 'json',
-      success: function(data) {
-        this.setState({autores: data});
-      }.bind(this)
-    });
-
-    PubSub.subscribe('atualiza-lista-livros', function(topicName,lista){
-      this.setState({lista:lista});
+    PubSub.subscribe('atualiza-lista-diretores', function(topicName,lista){
+      this.setState({diretores:lista});
     }.bind(this));
   }
 
@@ -146,8 +141,8 @@ export default class LivroAdmin extends Component {
           <h1>Cadastro de Diretores</h1>
         </div>
         <div className="content" id="content">
-          <FormularioLivro autores={this.state.autores}/>
-          <TabelaLivros lista={this.state.lista}/>
+          <FormularioDiretores diretores={this.state.diretores}/>
+          <TabelaDiretores lista={this.state.diretores}/>
         </div>
       </div>
     );

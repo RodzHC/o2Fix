@@ -5,6 +5,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var cadastro = require('./model/cadastro.js');
+var cadastroDiretores = require('./model/cadastroDiretores.js');
 var expressValidator = require('express-validator');
 //Criando instancias
 var app = express();
@@ -42,6 +43,46 @@ app.use('/api', router);
 app.listen(port, function() {
  console.log(`api running on port ${port}`);
 });
+
+router.route('/deiretores')
+  .get(function(req,res){
+    cadastroDiretores.find(function(err,pessoas){if(err){res.send(err);}res.json(pessoas);});
+
+
+  })
+  .post(function (req,res) {
+
+
+          req.assert('diretorNome', 'Nome obrigatório').notEmpty();
+          req.assert('diretorDataNascimento', 'Campo obrigatóri').notEmpty();
+          req.assert('diretorNacionalidade', 'Campo obrigatóri').notEmpty();
+          r
+
+          var errors = req.validationErrors();
+
+          if(errors){
+
+    					res.format({
+
+    							json: function() {
+    									res.status(400).json(errors);
+    							}
+                });
+                return;
+              }
+
+          var temp = new cadastroDiretores ();
+          temp.diretorNome = req.body.diretorNome;
+          temp.diretorDataNascimento = req.body.diretorDataNascimento;
+          temp.diretorNacionalidade = req.body.diretorNacionalidade;
+          // temp.nome = "Rodrigo";
+          // temp.email = "rodrigo.marzullo@gmail.com";
+          // temp.senha = "senha";
+          temp.save(function(err) {
+            if(err){res.send(err);}
+            res.json({ message: 'Cadastro efetuado com sucesso !' });
+          });
+  });
 
 router.route('/cadastro')
     .get(function(req,res){
