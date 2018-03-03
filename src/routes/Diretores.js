@@ -2,7 +2,9 @@ import $ from "jquery";
 import InputCustomizado from "../componentes/InputCustomizado"
 import React, { Component } from 'react';
 import PubSub from 'pubsub-js';
-import TratadorErros from '../TratadorErros'
+import TratadorErros from '../TratadorErros';
+
+var DatePicker = require("react-bootstrap-date-picker");
 
 class FormularioDiretores extends Component {
 
@@ -58,18 +60,31 @@ class FormularioDiretores extends Component {
   }
 
   render() {
-    var diretores = this.props.diretores.map(function(autor){
-      return <option key={autor.id} value={autor.id}>{autor.nome}</option>;
-    });
+    var myObject = this.props.nacionalidade;
+
+    function Varredor(obj) {
+      var ar =[];
+
+      for (var key in obj) {
+
+        ar.push(<option key={obj[key]._id} value={obj[key]._id}>{obj[key].name}</option>);
+
+
+      };
+      return ar ;
+    }
+
+    var meuPiru = Varredor(myObject);
+
     return (
       <div className="autorForm">
         <form className="pure-form pure-form-aligned" onSubmit={this.handleLivroSubmit}>
           <InputCustomizado id="diretorNome" name="diretorNome" label="Nome do diretor: " type="text" value={this.state.diretorNome} placeholder="Nome do diretor" onChange={this.setDiretorNome} />
           <InputCustomizado id="diretorDataNascimento" name="diretorDataNascimento" label="Data de nascimento: " type="date" value={this.state.diretorDataNascimento}  onChange={this.setDiretorDataNascimento} />
           <div className="pure-controls">
-            <select value={this.state.diretorNacionalidade} name="diretorNacionalidade" onChange={this.setdiretorNacionalidade}>
+            <select value={this.state.diretorNacionalidade} name="diretorNacionalidade" onChange={this.setDiretorNacionalidade}>
               <option value="">Selecione</option>
-              {diretores}
+              {meuPiru}
             </select>
           </div>
           <div className="pure-control-group">
@@ -114,7 +129,7 @@ class TabelaDiretores extends Component {
 export default class DiretoresAdmin extends Component {
   constructor(props) {
     super(props);
-    this.state = {diretores:[]};
+    this.state = {diretores:[],nacionalidade:{}};
   }
 
   componentDidMount() {
@@ -127,6 +142,16 @@ export default class DiretoresAdmin extends Component {
         this.setState({diretores: lista});
       }.bind(this)
     });
+    $.ajax({
+      url: "http://localhost:3001/api/cadastro/nacionalidade",
+      dataType: 'json',
+      success: function(lista) {
+        console.log(lista);
+        console.log(typeof lista);
+        this.setState({nacionalidade: lista});
+      }.bind(this)
+    });
+
 
     PubSub.subscribe('atualiza-lista-diretores', function(topicName,lista){
       this.setState({diretores:lista});
@@ -141,7 +166,7 @@ export default class DiretoresAdmin extends Component {
           <h1>Cadastro de Diretores</h1>
         </div>
         <div className="content" id="content">
-          <FormularioDiretores diretores={this.state.diretores}/>
+          <FormularioDiretores nacionalidade={this.state.nacionalidade}/>
           <TabelaDiretores lista={this.state.diretores}/>
         </div>
       </div>

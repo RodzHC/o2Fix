@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var cadastro = require('./model/cadastro.js');
 var cadastroDiretores = require('./model/cadastroDiretores.js');
 var expressValidator = require('express-validator');
+var nat = require('./nacionalidadesId.json');
 //Criando instancias
 var app = express();
 var router = express.Router();
@@ -44,7 +45,7 @@ app.listen(port, function() {
  console.log(`api running on port ${port}`);
 });
 
-router.route('/deiretores')
+router.route('/diretores')
   .get(function(req,res){
     cadastroDiretores.find(function(err,pessoas){if(err){res.send(err);}res.json(pessoas);});
 
@@ -83,7 +84,9 @@ router.route('/deiretores')
             res.json({ message: 'Cadastro efetuado com sucesso !' });
           });
   });
-
+router.route('/cadastro/nacionalidade').get(function (req,res) {
+    res.json(nat);
+});
 router.route('/cadastro')
     .get(function(req,res){
       cadastro.find(function(err,pessoas){if(err){res.send(err);}res.json(pessoas);});
