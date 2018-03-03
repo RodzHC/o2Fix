@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import PubSub from 'pubsub-js';
 import TratadorErros from '../TratadorErros';
 
-var DatePicker = require("react-bootstrap-date-picker");
+
 
 class FormularioDiretores extends Component {
 
@@ -81,6 +81,7 @@ class FormularioDiretores extends Component {
         <form className="pure-form pure-form-aligned" onSubmit={this.handleLivroSubmit}>
           <InputCustomizado id="diretorNome" name="diretorNome" label="Nome do diretor: " type="text" value={this.state.diretorNome} placeholder="Nome do diretor" onChange={this.setDiretorNome} />
           <InputCustomizado id="diretorDataNascimento" name="diretorDataNascimento" label="Data de nascimento: " type="date" value={this.state.diretorDataNascimento}  onChange={this.setDiretorDataNascimento} />
+
           <div className="pure-controls">
             <select value={this.state.diretorNacionalidade} name="diretorNacionalidade" onChange={this.setDiretorNacionalidade}>
               <option value="">Selecione</option>
