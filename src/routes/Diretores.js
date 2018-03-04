@@ -23,6 +23,15 @@ class FormularioDiretores extends Component {
     this.setState({ diretorNome: e.target.value });
   }
 
+  updateDirectors = (list) => {
+    PubSub.publish("atualiza-lista-diretores", list);
+    this.setState({
+      diretorNome: "",
+      diretorDataNascimento: "",
+      diretorNacionalidade: ""
+    });
+  };
+
   setDiretorDataNascimento(e) {
     this.setState({ diretorDataNascimento: e.target.value });
   }
@@ -36,6 +45,7 @@ class FormularioDiretores extends Component {
     var diretorNome = this.state.diretorNome.trim();
     var diretorDataNascimento = this.state.diretorDataNascimento;
     var diretorNacionalidade = this.state.diretorNacionalidade;
+    var update = this.updateDirectors;
 
     $.ajax({
       url: "http://localhost:3001/api/diretores",
@@ -47,14 +57,7 @@ class FormularioDiretores extends Component {
         diretorDataNascimento: diretorDataNascimento,
         diretorNacionalidade: diretorNacionalidade
       }),
-      success: function(novaListagem) {
-        PubSub.publish("atualiza-lista-diretores", novaListagem);
-        this.setState({
-          diretorNome: "",
-          diretorDataNascimento: "",
-          diretorNacionalidade: ""
-        });
-      },
+      success: update,
       error: function(resposta) {
         if (resposta.status === 400) {
           new TratadorErros().publicaErros(resposta.responseJSON);
