@@ -43,11 +43,7 @@ export default class FormComponent extends Component {
       <div className="log-form">
         <h2 className="header">Login</h2>
 
-        <form
-          className="pure-form"
-          onSubmit={this.envia.bind(this)}
-          method="post"
-        >
+        <form onSubmit={this.envia.bind(this)} method="post">
           <InputCustomizado
             className="log-input"
             id="email"
@@ -57,7 +53,6 @@ export default class FormComponent extends Component {
             label="Email"
           />
           <InputCustomizado
-            className="log-input"
             id="senha"
             type="password"
             name="senha"
