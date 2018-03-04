@@ -23,8 +23,10 @@ class FormularioDiretores extends Component {
     this.setState({ diretorNome: e.target.value });
   }
 
-  updateDirectors = (list) => {
+  updateDirectors = list => {
+    console.log(list);
     PubSub.publish("atualiza-lista-diretores", list);
+    console.log("Chamou Atualização da lista");
     this.setState({
       diretorNome: "",
       diretorDataNascimento: "",
@@ -141,15 +143,26 @@ class FormularioDiretores extends Component {
 
 class TabelaDiretores extends Component {
   render() {
-    var livros = this.props.lista.map(function(livro) {
-      return (
-        <tr key={livro.diretorNome}>
-          <td>{livro.diretorNome}</td>
-          <td>{livro.diretorNacionalidade}</td>
-          <td>{livro.diretorDataNascimento}</td>
-        </tr>
-      );
-    });
+    var myObject = this.props.lista;
+    var temp = myObject[0];
+
+    function Varredor(obj) {
+      var ar = [];
+
+      for (var key in obj) {
+        ar.push(
+          <tr key={obj[key]._id}>
+            <td>{obj[key].diretorNome}</td>
+            <td>{obj[key].diretorNacionalidade}</td>
+            <td>{obj[key].diretorDataNascimento}</td>
+          </tr>
+        );
+      }
+      return ar;
+    }
+
+    var diretoresTabela = Varredor(myObject);
+
     return (
       <table className="pure-table">
         <thead>
@@ -159,7 +172,7 @@ class TabelaDiretores extends Component {
             <th>Data de Nascimento</th>
           </tr>
         </thead>
-        <tbody>{livros}</tbody>
+        <tbody>{diretoresTabela}</tbody>
       </table>
     );
   }
@@ -168,7 +181,7 @@ class TabelaDiretores extends Component {
 export default class DiretoresAdmin extends Component {
   constructor(props) {
     super(props);
-    this.state = { diretores: [], nacionalidade: {} };
+    this.state = { diretores: [], nacionalidade: [] };
   }
 
   componentDidMount() {
@@ -183,15 +196,16 @@ export default class DiretoresAdmin extends Component {
       url: "http://localhost:3001/api/cadastro/nacionalidade",
       dataType: "json",
       success: function(lista) {
-        console.log(lista);
-        console.log(typeof lista);
         this.setState({ nacionalidade: lista });
       }.bind(this)
     });
-
     PubSub.subscribe(
       "atualiza-lista-diretores",
       function(topicName, lista) {
+        console.log("recebeu pubsub e setou state diretores");
+        console.log(lista);
+        console.log(lista);
+        console.log(lista);
         this.setState({ diretores: lista });
       }.bind(this)
     );

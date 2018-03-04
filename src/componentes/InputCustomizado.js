@@ -12,6 +12,7 @@ export default class InputCustomizado extends Component {
       <div className="pure-control-group">
         <label htmlFor={this.props.id}>{this.props.label}</label>
         <input
+          className={this.props.className}
           id={this.props.id}
           type={this.props.type}
           name={this.props.name}

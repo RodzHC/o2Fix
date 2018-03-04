@@ -1,18 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import registerServiceWorker from './registerServiceWorker';
+import Rotas from "./Rotas";
 
-import{BrowserRouter} from 'react-router-dom';
+import "./css/normalize.css";
+import "./css/pure.css";
+import "./css/bootstrap-theme.css";
+import "./css/side-bar.css";
+import "./css/index.css";
+import "./css/login.css";
 
+import registerServiceWorker from "./registerServiceWorker";
+import { BrowserRouter } from "react-router-dom";
 
-ReactDOM.render((
+ReactDOM.render(
   <BrowserRouter>
-    <App />
-  </BrowserRouter>
-), document.getElementById('root'));
-
-
+    <Rotas />
+  </BrowserRouter>,
+  document.getElementById("root")
+);
 registerServiceWorker();

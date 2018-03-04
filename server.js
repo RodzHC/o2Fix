@@ -87,7 +87,12 @@ router
       if (err) {
         res.send(err);
       }
-      res.json({ message: "Cadastro efetuado com sucesso !" });
+      cadastroDiretores.find(function(err, pessoas) {
+        if (err) {
+          res.send(err);
+        }
+        res.json(pessoas);
+      });
     });
   });
 router.route("/cadastro/nacionalidade").get(function(req, res) {

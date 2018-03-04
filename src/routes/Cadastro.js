@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import FormComponent from "../componentes/FormComponent";
-import Login from "../componentes/Login";
+import FormCadastro from "../componentes/FormCadastro";
+import FormLogin from "../componentes/FormLogin";
 export default class Cadastro extends Component {
   render() {
     return (
@@ -9,8 +9,8 @@ export default class Cadastro extends Component {
           <h1>Login/Cadastro</h1>
         </div>
         <div className="content" id="content" />
-        <Login />
-        <FormComponent />
+        <FormLogin />
+        <FormCadastro />
       </div>
     );
   }
