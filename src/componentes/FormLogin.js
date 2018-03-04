@@ -1,6 +1,14 @@
 import React, { Component } from "react";
-import TratadorErros from "../TratadorErros";
+import TratadorErros from "../infra/TratadorErros";
+import Cadastro from "../routes/Cadastro";
 import InputCustomizado from "./InputCustomizado";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from "react-router-dom";
 
 export default class FormComponent extends Component {
   constructor() {
@@ -64,11 +72,12 @@ export default class FormComponent extends Component {
             <button type="submit" className="pure-button pure-button-primary">
               Login
             </button>
-            <a class="forgot" href="#">
-              Forgot Username?
-            </a>
+            <Link className="forgot" href="#" to="/cadastro">
+              Criar nova conta
+            </Link>
           </div>
         </form>
+        <Route path="/cadastro" component={Cadastro} />
       </div>
     );
   }

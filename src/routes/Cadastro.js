@@ -9,8 +9,8 @@ export default class Cadastro extends Component {
           <h1>Login/Cadastro</h1>
         </div>
         <div className="content" id="content" />
-        <FormLogin />
         <FormCadastro />
+        <FormLogin />
       </div>
     );
   }

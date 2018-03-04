@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
-import Home from "./routes/Home";
+
 import Cadastro from "./routes/Cadastro";
 import Diretores from "./routes/Diretores";
 import FormLogin from "./componentes/FormLogin";

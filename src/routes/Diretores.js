@@ -2,7 +2,7 @@ import $ from "jquery";
 import InputCustomizado from "../componentes/InputCustomizado";
 import React, { Component } from "react";
 import PubSub from "pubsub-js";
-import TratadorErros from "../TratadorErros";
+import TratadorErros from "../infra/TratadorErros";
 
 class FormularioDiretores extends Component {
   constructor(props) {
@@ -144,7 +144,6 @@ class FormularioDiretores extends Component {
 class TabelaDiretores extends Component {
   render() {
     var myObject = this.props.lista;
-    var temp = myObject[0];
 
     function Varredor(obj) {
       var ar = [];

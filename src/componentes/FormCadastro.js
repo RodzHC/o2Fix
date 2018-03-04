@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PubSub from "pubsub-js";
 import $ from "jquery";
-import TratadorErros from "../TratadorErros";
+import TratadorErros from "../infra/TratadorErros";
 import InputCustomizado from "./InputCustomizado";
 
 export default class FormCadastro extends Component {
