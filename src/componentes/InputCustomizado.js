@@ -9,7 +9,7 @@ export default class InputCustomizado extends Component {
 
   render() {
     return (
-      <div className="pure-control-group">
+      <div>
         <label htmlFor={this.props.id}>{this.props.label}</label>
         <input
           className={this.props.className}

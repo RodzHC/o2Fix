@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Rotas from "./Rotas";
+import App from "./App";
 
 import "./css/normalize.css";
 import "./css/pure.css";
@@ -15,7 +15,7 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <BrowserRouter>
-    <Rotas />
+    <App />
   </BrowserRouter>,
   document.getElementById("root")
 );

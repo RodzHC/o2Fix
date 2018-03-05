@@ -48,12 +48,10 @@ export default class FormComponent extends Component {
 
   render() {
     return (
-      <div className="log-form">
-        <h2 className="header">Login</h2>
-
+      <div>
+        <h2>Login</h2>
         <form onSubmit={this.envia.bind(this)} method="post">
           <InputCustomizado
-            className="log-input"
             id="email"
             type="email"
             name="email"
@@ -67,17 +65,15 @@ export default class FormComponent extends Component {
             ref={input => (this.senha = input)}
             label="Senha"
           />
-          <div className="pure-control-group">
-            <label />
-            <button type="submit" className="pure-button pure-button-primary">
-              Login
-            </button>
-            <Link className="forgot" href="#" to="/cadastro">
-              Criar nova conta
-            </Link>
-          </div>
+
+          <label />
+          <button type="submit" className="btn">
+            Login
+          </button>
+          <Link className="forgot" href="#" to="/cadastro">
+            Criar nova conta
+          </Link>
         </form>
-        <Route path="/cadastro" component={Cadastro} />
       </div>
     );
   }

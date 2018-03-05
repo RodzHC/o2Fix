@@ -42,3 +42,8 @@ body {
 .form-login {
   text-align: center;
 }
+.voltar-login {
+  position: relative;
+
+  text-align: center;
+}

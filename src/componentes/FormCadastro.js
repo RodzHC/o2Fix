@@ -3,6 +3,13 @@ import PubSub from "pubsub-js";
 import $ from "jquery";
 import TratadorErros from "../infra/TratadorErros";
 import InputCustomizado from "./InputCustomizado";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from "react-router-dom";
 
 export default class FormCadastro extends Component {
   constructor() {
@@ -62,12 +69,9 @@ export default class FormCadastro extends Component {
 
   render() {
     return (
-      <div className="teste">
-        <form
-          className="pure-form pure-form-aligned "
-          onSubmit={this.enviaForm}
-          method="post"
-        >
+      <div>
+        <h2>Cadastro</h2>
+        <form onSubmit={this.enviaForm} method="post">
           <InputCustomizado
             id="nome"
             type="text"
@@ -100,11 +104,14 @@ export default class FormCadastro extends Component {
             onChange={this.setSenhaCheck}
             label="Confime a Senha"
           />
-          <div className="pure-control-group">
+          <div>
             <label />
-            <button type="submit" className="pure-button pure-button-primary">
+            <button type="submit" className="btn">
               Criar Conta
             </button>
+            <Link className="forgot" href="#" to="/">
+              Voltar para tela de Login
+            </Link>
           </div>
         </form>
       </div>
