@@ -22,15 +22,15 @@ export default class FormComponent extends Component {
     const requestInfo = {
       method: "POST",
       body: JSON.stringify({
-        login: this.login.value,
-        senha: this.senha.value
+        login: this.logemail.value,
+        senha: this.logsenha.value
       }),
       headers: new Headers({
         "Content-type": "application/json"
       })
     };
 
-    fetch("http://localhost:3001/api/public/login", requestInfo)
+    fetch("http://localhost:8080/api/authenticate", requestInfo)
       .then(response => {
         if (response.ok) {
           return response.text();
@@ -39,7 +39,8 @@ export default class FormComponent extends Component {
         }
       })
       .then(token => {
-        localStorage.setItem("auth-token", token);
+        console.log(token);
+        //localStorage.setItem("auth-token", token);
       })
       .catch(error => {
         this.setState({ msg: error.message });
@@ -55,14 +56,14 @@ export default class FormComponent extends Component {
             id="email"
             type="email"
             name="email"
-            ref={input => (this.email = input)}
+            ref={input => (this.logemail = input)}
             label="Email"
           />
           <InputCustomizado
             id="senha"
             type="password"
             name="senha"
-            ref={input => (this.senha = input)}
+            ref={input => (this.logsenha = input)}
             label="Senha"
           />
 

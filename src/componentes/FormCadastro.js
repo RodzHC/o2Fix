@@ -14,7 +14,7 @@ import {
 export default class FormCadastro extends Component {
   constructor() {
     super();
-    this.state = { nome: "", email: "", senha: "", senhaCheck: "" };
+    this.state = { nome: "", email: "", senha: "", senhaCheck: "", msg: "" };
     this.enviaForm = this.enviaForm.bind(this);
     this.setNome = this.setNome.bind(this);
     this.setEmail = this.setEmail.bind(this);
@@ -24,32 +24,42 @@ export default class FormCadastro extends Component {
 
   enviaForm(evento) {
     evento.preventDefault();
-
-    $.ajax({
-      url: "http://localhost:3001/api/cadastro",
-      contentType: "application/json",
-      dataType: "json",
-      type: "post",
-      data: JSON.stringify({
+    const requestInfo = {
+      method: "POST",
+      body: JSON.stringify({
         nome: this.state.nome,
         email: this.state.email,
-        senha: this.state.senha
+        senha: this.state.senha,
+        senhaConf: this.state.senhaCheck
       }),
-      success: function(novaListagem) {
-        console.log("Entrei!");
-        PubSub.publish("atualiza-lista-autores", novaListagem);
-        this.setState({ nome: "", email: "", senha: "" });
-      }.bind(this),
-      error: function(resposta) {
-        if (resposta.status === 400) {
-          console.log(resposta.responseJSON);
-          new TratadorErros().publicaErros(resposta.responseJSON);
+      headers: new Headers({
+        "Content-Type": "application/json"
+      })
+    };
+
+    fetch("http://localhost:3001/api/cadastro", requestInfo)
+      .then(res => {
+        return res.json();
+      })
+      .then(mid => {
+        if (mid.success === false) {
+          var temp = mid.message;
+          throw new Error(temp);
+        } else if (mid.success === true) {
+          this.setState({
+            msg: mid.message,
+            nome: "",
+            email: "",
+            senha: "",
+            senhaCheck: ""
+          });
+          return mid;
         }
-      },
-      beforeSend: function() {
-        PubSub.publish("limpa-erros", {});
-      }
-    });
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({ msg: error.message });
+      });
   }
 
   setNome(evento) {
@@ -71,7 +81,8 @@ export default class FormCadastro extends Component {
     return (
       <div>
         <h2>Cadastro</h2>
-        <form onSubmit={this.enviaForm} method="post">
+        <span>{this.state.msg}</span>
+        <form onSubmit={this.enviaForm.bind(this)}>
           <InputCustomizado
             id="nome"
             type="text"
