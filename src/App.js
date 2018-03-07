@@ -13,6 +13,7 @@ class App extends Component {
           <div className="log-form">
             <Route exact path="/" component={FormLogin} />
             <Route path="/cadastro" component={FormCadastro} />
+
             <Route path="/diretores" component={Diretores} />
           </div>
         </Switch>

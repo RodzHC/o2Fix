@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var User = require("./model/cadastroMM.js");
 var cadastroDiretores = require("./model/cadastroDiretoresMM.js");
+var config = require("./config");
 
 var jwt = require("jsonwebtoken"); // used to create, sign, and verify tokens
 
@@ -147,24 +148,6 @@ router.route("/autentica").post(function(req, res) {
   } else {
     console.log("Vou tentar iniciar o User");
 
-    User.findOne(
-      {
-        email: req.body.email
-      },
-      function(err, user) {
-        console.log("Checando se já existe e-mail cadastrado ...");
-        if (err) throw err;
-
-        if (user) {
-          return res.json({
-            success: false,
-            message: "E-mail Já Cadastrado",
-            code: "6"
-          });
-        }
-      }
-    );
-
     User.authenticate(req.body.email, req.body.senha, function(error, user) {
       console.log("entrei na callback do authenticate");
       if (error || !user) {
@@ -177,7 +160,7 @@ router.route("/autentica").post(function(req, res) {
         var payload = {
           admin: user.admin
         };
-        var token = jwt.sign(payload, app.get("superSecret"), {
+        var token = jwt.sign(payload, config.secret, {
           expiresIn: 86400 // expires in 24 hours
         });
 
@@ -193,5 +176,4 @@ router.route("/autentica").post(function(req, res) {
 router.route("/cadastro/nacionalidade").get(function(req, res) {
   res.json(nat);
 });
-
 module.exports = router;

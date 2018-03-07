@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PubSub from "pubsub-js";
 import $ from "jquery";
-import TratadorErros from "../infra/TratadorErros";
 import InputCustomizado from "./InputCustomizado";
 import {
   BrowserRouter as Router,

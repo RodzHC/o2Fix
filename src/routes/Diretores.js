@@ -2,7 +2,6 @@ import $ from "jquery";
 import InputCustomizado from "../componentes/InputCustomizado";
 import React, { Component } from "react";
 import PubSub from "pubsub-js";
-import TratadorErros from "../infra/TratadorErros";
 
 class FormularioDiretores extends Component {
   constructor(props) {
@@ -62,7 +61,6 @@ class FormularioDiretores extends Component {
       success: update,
       error: function(resposta) {
         if (resposta.status === 400) {
-          new TratadorErros().publicaErros(resposta.responseJSON);
         }
       },
       beforeSend: function() {

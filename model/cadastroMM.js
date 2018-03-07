@@ -47,11 +47,13 @@ CadastroSchema.statics.authenticate = function(email, senha, callback) {
       bcrypt.compare(senha, user.senha, function(err, result) {
         console.log("Entrein o bcrypt !");
         if (result === true) {
-          console.log("Sem resultado no bcrypt");
+          console.log("Senha compativel");
           return callback(null, user);
         } else {
-          console.log("Retornando callback do bcrypt");
-          return callback();
+          console.log("Senha errada!");
+          var err = new Error("Senha errada!");
+          err.status = 401;
+          return callback(err);
         }
       });
     }

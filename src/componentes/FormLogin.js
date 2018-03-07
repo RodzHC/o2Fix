@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import TratadorErros from "../infra/TratadorErros";
 import Cadastro from "../routes/Cadastro";
 import InputCustomizado from "./InputCustomizado";
 import {
@@ -44,7 +43,8 @@ export default class FormComponent extends Component {
             nome: "",
             email: ""
           });
-          return mid;
+          localStorage.setItem("auth-token", mid.token);
+          console.log(mid.token);
         }
       })
       .catch(error => {

@@ -78,3 +78,4 @@ app.use(function(err, req, res, next) {
 app.listen(port, function() {
   console.log(`api running on port ${port}`);
 });
+module.exports = app;
