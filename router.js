@@ -133,7 +133,19 @@ router
       }
     );
   });
-router.route("/autentica").post(function(req, res) {});
+router.route("/autentica").post(function(req, res) {
+  if (!req.body.email) {
+    return res.status(400).json({
+      success: false,
+      message: "E-mail Obrigatório.",
+      code: "1"
+    });
+  } else if (!req.body.senha) {
+    return res
+      .status(400)
+      .send({ success: false, message: "Senha Obrigatória." });
+  }
+});
 router.route("/cadastro/nacionalidade").get(function(req, res) {
   res.json(nat);
 });

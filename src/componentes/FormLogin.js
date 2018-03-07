@@ -18,31 +18,37 @@ export default class FormComponent extends Component {
 
   envia(event) {
     event.preventDefault();
-
+    console.log(this);
     const requestInfo = {
       method: "POST",
       body: JSON.stringify({
-        login: this.logemail.value,
-        senha: this.logsenha.value
+        email: this.email.value,
+        senha: this.senha.value
       }),
       headers: new Headers({
         "Content-type": "application/json"
       })
     };
 
-    fetch("http://localhost:8080/api/authenticate", requestInfo)
-      .then(response => {
-        if (response.ok) {
-          return response.text();
-        } else {
-          throw new Error("não foi possível fazer o login");
+    fetch("http://localhost:3001/api/autentica", requestInfo)
+      .then(res => {
+        return res.json();
+      })
+      .then(mid => {
+        if (mid.success === false) {
+          var temp = mid.message;
+          throw new Error(temp);
+        } else if (mid.success === true) {
+          this.setState({
+            msg: mid.message,
+            nome: "",
+            email: ""
+          });
+          return mid;
         }
       })
-      .then(token => {
-        console.log(token);
-        //localStorage.setItem("auth-token", token);
-      })
       .catch(error => {
+        console.log(error);
         this.setState({ msg: error.message });
       });
   }
@@ -51,23 +57,24 @@ export default class FormComponent extends Component {
     return (
       <div>
         <h2>Login</h2>
+        <span>{this.state.msg}</span>
         <form onSubmit={this.envia.bind(this)} method="post">
-          <InputCustomizado
+          <label>E-mail</label>
+
+          <input
             id="email"
             type="email"
             name="email"
-            ref={input => (this.logemail = input)}
-            label="Email"
+            ref={input => (this.email = input)}
           />
-          <InputCustomizado
+          <label>Senha</label>
+          <input
             id="senha"
-            type="password"
             name="senha"
-            ref={input => (this.logsenha = input)}
-            label="Senha"
+            type="password"
+            ref={input => (this.senha = input)}
           />
 
-          <label />
           <button type="submit" className="btn">
             Login
           </button>
