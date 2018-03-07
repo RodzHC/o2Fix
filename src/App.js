@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import FormLogin from "./componentes/FormLogin";
 import FormCadastro from "./componentes/FormCadastro";
 import Diretores from "./routes/Diretores";
+import IndexAdmin from "./componentes/IndexAdmin";
 
 class App extends Component {
   render() {
@@ -12,9 +13,8 @@ class App extends Component {
         <Switch>
           <div className="log-form">
             <Route exact path="/" component={FormLogin} />
+            <Route path="/adm" component={IndexAdmin} />
             <Route path="/cadastro" component={FormCadastro} />
-
-            <Route path="/diretores" component={Diretores} />
           </div>
         </Switch>
       </main>
