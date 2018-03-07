@@ -143,7 +143,51 @@ router.route("/autentica").post(function(req, res) {
   } else if (!req.body.senha) {
     return res
       .status(400)
-      .send({ success: false, message: "Senha Obrigatória." });
+      .json({ success: false, message: "Senha Obrigatória." });
+  } else {
+    console.log("Vou tentar iniciar o User");
+
+    User.findOne(
+      {
+        email: req.body.email
+      },
+      function(err, user) {
+        console.log("Checando se já existe e-mail cadastrado ...");
+        if (err) throw err;
+
+        if (user) {
+          return res.json({
+            success: false,
+            message: "E-mail Já Cadastrado",
+            code: "6"
+          });
+        }
+      }
+    );
+
+    User.authenticate(req.body.email, req.body.senha, function(error, user) {
+      console.log("entrei na callback do authenticate");
+      if (error || !user) {
+        return res
+          .status(400)
+          .json({ success: false, message: "Email ou Senha Inválido(s)!" });
+      } else {
+        // if user is found and password is right
+        // create a token
+        var payload = {
+          admin: user.admin
+        };
+        var token = jwt.sign(payload, app.get("superSecret"), {
+          expiresIn: 86400 // expires in 24 hours
+        });
+
+        return res.json({
+          success: true,
+          message: "Enjoy your token!",
+          token: token
+        });
+      }
+    });
   }
 });
 router.route("/cadastro/nacionalidade").get(function(req, res) {

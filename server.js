@@ -8,14 +8,15 @@ var morgan = require("morgan");
 var mongoose = require("mongoose");
 // var session = require("express-session");
 // var MongoStore = require("connect-mongo")(session);
-
+//Configurações básicas de segredo + database
+var config = require("./config");
 //Criando instancias
 var app = express();
 
 //Seta a porta (ou deixa ela em 3001)
 var port = process.env.API_PORT || 3001;
-
-mongoose.connect("mongodb://localhost/dev");
+app.set("superSecret", config.secret);
+mongoose.connect(config.database);
 const db = mongoose.connection;
 
 //

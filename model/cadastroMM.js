@@ -27,22 +27,34 @@ var CadastroSchema = new mongoose.Schema({
 });
 
 //authenticate input against database
+
 CadastroSchema.statics.authenticate = function(email, senha, callback) {
-  cadastro.findOne({ email: email }).exec(function(err, user) {
+  console.log(email);
+  console.log(senha);
+
+  User.findOne({ email: email }, function(err, user) {
+    console.log("entrei no findone");
+    console.log(user);
     if (err) {
+      console.log("dando erro aqui !");
       return callback(err);
     } else if (!user) {
       var err = new Error("User not found.");
       err.status = 401;
       return callback(err);
+    } else {
+      console.log("Achei e-mail ! Inicializando bcrypt...");
+      bcrypt.compare(senha, user.senha, function(err, result) {
+        console.log("Entrein o bcrypt !");
+        if (result === true) {
+          console.log("Sem resultado no bcrypt");
+          return callback(null, user);
+        } else {
+          console.log("Retornando callback do bcrypt");
+          return callback();
+        }
+      });
     }
-    bcrypt.compare(senha, user.senha, function(err, result) {
-      if (result === true) {
-        return callback(null, user);
-      } else {
-        return callback();
-      }
-    });
   });
 };
 //hashing a password before saving it to the database
@@ -59,5 +71,5 @@ CadastroSchema.pre("save", function(next) {
     next();
   });
 });
-
-module.exports = mongoose.model("cadastro", CadastroSchema);
+var User = mongoose.model("User", CadastroSchema);
+module.exports = User;
