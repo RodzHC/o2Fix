@@ -11,27 +11,38 @@ export default class Menu extends Component {
     const { isBlocking } = this.state;
 
     return (
-      <div id="layout">
+      <div>
         <div id="menu">
-          <div className="pure-menu">
-            <a className="pure-menu-heading" href="#">
+          <div class="pure-menu">
+            <a class="pure-menu-heading" href="#">
               Company
             </a>
 
-            <ul className="pure-menu-list">
-              <li className="pure-menu-item">
-                <a href="#" className="pure-menu-link">
-                  Home
+            <ul class="pure-menu-list">
+              <li class="pure-menu-item">
+                <a href="#" class="pure-menu-link">
+                  Formularios
                 </a>
               </li>
-              <li className="pure-menu-item">
-                <Link href="#" to="/cadastrodiretores">
-                  Cadastrar Diretores
+              <li class="pure-menu-item">
+                <a href="#" class="pure-menu-link">
+                  Filmes
+                </a>
+              </li>
+
+              <li class="pure-menu-item ">
+                <Link
+                  href="cadastrosDiretores"
+                  to="/cadastrodiretores"
+                  class="pure-menu-link"
+                >
+                  Diretores
                 </Link>
               </li>
-              <li className="pure-menu-item">
-                <a href="#" className="pure-menu-link">
-                  Livro
+
+              <li class="pure-menu-item">
+                <a href="#" class="pure-menu-link">
+                  Contato
                 </a>
               </li>
             </ul>
