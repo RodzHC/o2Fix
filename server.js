@@ -76,6 +76,6 @@ app.use(function(err, req, res, next) {
 
 //starts the server and listens for requests
 app.listen(port, function() {
-  console.log(`api running on port ${port}`);
+  console.log(`Rodando API na porta: ${port}`);
 });
 module.exports = app;

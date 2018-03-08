@@ -1,13 +1,6 @@
 import React, { Component } from "react";
-import Cadastro from "../routes/Cadastro";
-import InputCustomizado from "./InputCustomizado";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom";
+import "../public/css/login.css";
+import { Link } from "react-router-dom";
 
 export default class FormComponent extends Component {
   constructor() {

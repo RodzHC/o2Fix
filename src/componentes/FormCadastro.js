@@ -1,14 +1,6 @@
 import React, { Component } from "react";
-import PubSub from "pubsub-js";
-import $ from "jquery";
 import InputCustomizado from "./InputCustomizado";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Redirect,
-  withRouter
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default class FormCadastro extends Component {
   constructor() {

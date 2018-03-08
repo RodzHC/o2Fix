@@ -3,12 +3,11 @@ import ReactDOM from "react-dom";
 
 import App from "./App";
 
-import "./css/normalize.css";
-import "./css/pure.css";
-import "./css/bootstrap-theme.css";
-import "./css/side-bar.css";
-import "./css/index.css";
-import "./css/login.css";
+import "./public/css/normalize.css";
+import "./public/css/pure.css";
+import "./public/css/side-bar.css";
+import "./public/css/index.css";
+import "./public/css/pure.css";
 
 import registerServiceWorker from "./registerServiceWorker";
 import { BrowserRouter } from "react-router-dom";
