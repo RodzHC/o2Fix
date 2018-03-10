@@ -4,8 +4,8 @@ import React, { Component } from "react";
 import PubSub from "pubsub-js";
 
 class FormularioDiretores extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       diretorNome: "",
       diretorDataNascimento: "",
@@ -109,6 +109,7 @@ class FormularioDiretores extends Component {
             onChange={this.setDiretorNome}
           />
           <InputCustomizado
+            placeholder=""
             id="diretorDataNascimento"
             name="diretorDataNascimento"
             label="Data de nascimento: "
@@ -176,8 +177,8 @@ class TabelaDiretores extends Component {
 }
 
 export default class DiretoresAdmin extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = { diretores: [], nacionalidade: [] };
   }
 
@@ -196,13 +197,13 @@ export default class DiretoresAdmin extends Component {
         this.setState({ nacionalidade: lista });
       }.bind(this)
     });
+
     PubSub.subscribe(
       "atualiza-lista-diretores",
       function(topicName, lista) {
         console.log("recebeu pubsub e setou state diretores");
         console.log(lista);
-        console.log(lista);
-        console.log(lista);
+
         this.setState({ diretores: lista });
       }.bind(this)
     );

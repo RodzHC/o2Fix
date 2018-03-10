@@ -48,33 +48,35 @@ export default class FormComponent extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Login</h2>
-        <span>{this.state.msg}</span>
-        <form onSubmit={this.envia.bind(this)} method="post">
-          <label>E-mail</label>
+      <div className="log-form">
+        <div>
+          <h2>Login</h2>
+          <span>{this.state.msg}</span>
+          <form onSubmit={this.envia.bind(this)} method="post">
+            <label>E-mail</label>
 
-          <input
-            id="email"
-            type="email"
-            name="email"
-            ref={input => (this.email = input)}
-          />
-          <label>Senha</label>
-          <input
-            id="senha"
-            name="senha"
-            type="password"
-            ref={input => (this.senha = input)}
-          />
+            <input
+              id="email"
+              type="email"
+              name="email"
+              ref={input => (this.email = input)}
+            />
+            <label>Senha</label>
+            <input
+              id="senha"
+              name="senha"
+              type="password"
+              ref={input => (this.senha = input)}
+            />
 
-          <button type="submit" className="btn">
-            Login
-          </button>
-          <Link className="forgot" href="#" to="/cadastro">
-            Criar nova conta
-          </Link>
-        </form>
+            <button type="submit" className="btn">
+              Login
+            </button>
+            <Link className="forgot" href="#" to="/cadastro">
+              Criar nova conta
+            </Link>
+          </form>
+        </div>
       </div>
     );
   }

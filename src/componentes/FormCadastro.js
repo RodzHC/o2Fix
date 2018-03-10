@@ -70,52 +70,58 @@ export default class FormCadastro extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Cadastro</h2>
-        <span>{this.state.msg}</span>
-        <form onSubmit={this.enviaForm.bind(this)}>
-          <InputCustomizado
-            id="nome"
-            type="text"
-            name="nome"
-            value={this.state.nome}
-            onChange={this.setNome}
-            label="Nome"
-          />
-          <InputCustomizado
-            id="email"
-            type="email"
-            name="email"
-            value={this.state.email}
-            onChange={this.setEmail}
-            label="Email"
-          />
-          <InputCustomizado
-            id="senha"
-            type="password"
-            name="senha"
-            value={this.state.senha}
-            onChange={this.setSenha}
-            label="Senha"
-          />
-          <InputCustomizado
-            id="senhaCheck"
-            type="password"
-            name="senhaCheck"
-            value={this.state.senhaCheck}
-            onChange={this.setSenhaCheck}
-            label="Confime a Senha"
-          />
-          <div>
-            <label />
-            <button type="submit" className="btn">
-              Criar Conta
-            </button>
-            <Link className="forgot" href="#" to="/">
-              Voltar para tela de Login
-            </Link>
-          </div>
-        </form>
+      <div className="log-form">
+        <div>
+          <h2>Cadastro</h2>
+          <span>{this.state.msg}</span>
+          <form onSubmit={this.enviaForm.bind(this)}>
+            <InputCustomizado
+              placeholder=""
+              id="nome"
+              type="text"
+              name="nome"
+              value={this.state.nome}
+              onChange={this.setNome}
+              label="Nome"
+            />
+            <InputCustomizado
+              placeholder=""
+              id="email"
+              type="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.setEmail}
+              label="Email"
+            />
+            <InputCustomizado
+              placeholder=""
+              id="senha"
+              type="password"
+              name="senha"
+              value={this.state.senha}
+              onChange={this.setSenha}
+              label="Senha"
+            />
+            <InputCustomizado
+              placeholder=""
+              id="senhaCheck"
+              type="password"
+              name="senhaCheck"
+              value={this.state.senhaCheck}
+              onChange={this.setSenhaCheck}
+              label="Confime a Senha"
+            />
+            <div>
+              <label />
+              <button type="submit" className="btn">
+                Criar Conta
+              </button>
+              <Link className="forgot" href="#" to="/">
+                Voltar para tela de Login
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

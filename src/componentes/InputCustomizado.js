@@ -12,12 +12,12 @@ export default class InputCustomizado extends Component {
       <div>
         <label htmlFor={this.props.id}>{this.props.label}</label>
         <input
-          className={this.props.className}
           id={this.props.id}
           type={this.props.type}
           name={this.props.name}
           value={this.props.value}
           onChange={this.props.onChange}
+          placeholder={this.props.placeholder}
         />
         <span className="error">{this.state.msgErro}</span>
       </div>
