@@ -1,8 +1,12 @@
 var mongoose = require("mongoose");
 
 var cadastroDiretoresSchema = mongoose.Schema({
-  diretorNome: String,
-  diretorDataNascimento: Date,
+  diretorNome: {
+    type: String,
+    trim: true,
+    unique: true
+  },
+  diretorDataNascimento: String,
   diretorNacionalidade: String
 });
 

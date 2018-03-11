@@ -83,7 +83,7 @@ class FormularioDiretores extends Component {
 
       for (var key in obj) {
         ar.push(
-          <option key={obj[key]._id} value={obj[key]._id}>
+          <option key={obj[key]._id} value={obj[key].name}>
             {obj[key].name}
           </option>
         );
@@ -118,13 +118,16 @@ class FormularioDiretores extends Component {
             onChange={this.setDiretorDataNascimento}
           />
 
-          <div className="pure-controls">
+          <div className="pure-control-group">
+            <label>Nacionalidade</label>
             <select
               value={this.state.diretorNacionalidade}
               name="diretorNacionalidade"
               onChange={this.setDiretorNacionalidade}
             >
-              <option value="">Selecione</option>
+              <option value="" disabled value>
+                Selecione
+              </option>
               {meuPiru}
             </select>
           </div>
@@ -158,7 +161,7 @@ class TabelaDiretores extends Component {
       }
       return ar;
     }
-
+    console.log(myObject);
     var diretoresTabela = Varredor(myObject);
 
     return (
@@ -167,7 +170,7 @@ class TabelaDiretores extends Component {
           <tr>
             <th>Nome</th>
             <th>Nacionalidade</th>
-            <th>Data de Nascimento</th>
+            <th>Data de Nascimento (dd/mm/aaaa)</th>
           </tr>
         </thead>
         <tbody>{diretoresTabela}</tbody>

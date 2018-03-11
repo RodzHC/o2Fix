@@ -16,7 +16,7 @@ export default class Menu extends Component {
         <div id="menu">
           <div className="pure-menu">
             <a className="pure-menu-heading" href="#">
-              Company
+              O2Fix
             </a>
 
             <ul className="pure-menu-list">
@@ -26,9 +26,9 @@ export default class Menu extends Component {
                 </a>
               </li>
               <li className="pure-menu-item">
-                <a href="#" className="pure-menu-link">
+                <Link to="/home/filmes" href="#" className="pure-menu-link">
                   Filmes
-                </a>
+                </Link>
               </li>
 
               <li className="pure-menu-item ">
