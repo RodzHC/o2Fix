@@ -8,6 +8,7 @@ var morgan = require("morgan");
 var mongoose = require("mongoose");
 // var session = require("express-session");
 // var MongoStore = require("connect-mongo")(session);
+var jwt = require("jsonwebtoken");
 //Configurações básicas de segredo + database
 var config = require("./config");
 //Criando instancias
@@ -18,18 +19,6 @@ var port = process.env.API_PORT || 3001;
 app.set("superSecret", config.secret);
 mongoose.connect(config.database);
 const db = mongoose.connection;
-
-//
-// app.use(
-//   session({
-//     secret: "work hard",
-//     resave: true,
-//     saveUninitialized: false,
-//     store: new MongoStore({
-//       mongooseConnection: db
-//     })
-//   })
-// );
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -61,18 +50,6 @@ var router = require("./router");
 
 //Use our router configuration when we call /api
 app.use("/api", router);
-
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error("File Not Found");
-  err.status = 404;
-  next(err);
-});
-
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.send(err.message);
-});
 
 //starts the server and listens for requests
 app.listen(port, function() {

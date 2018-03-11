@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "../public/css/login.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 export default class FormComponent extends Component {
   constructor() {
     super();
-    this.state = { msg: "" };
+    this.state = { msg: "", redirectToReferrer: false };
   }
 
   envia(event) {
@@ -47,6 +47,13 @@ export default class FormComponent extends Component {
   }
 
   render() {
+    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { redirectToReferrer } = this.state;
+
+    if (redirectToReferrer) {
+      return <Redirect to={from} />;
+    }
+
     return (
       <div className="log-form">
         <div>
