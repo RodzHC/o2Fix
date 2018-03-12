@@ -9,11 +9,11 @@
     "express-session": "^1.15.6",
     "express-validator": "^5.0.2",
     "jquery": "^3.3.1",
+    "micro": "^9.1.4",
     "morgan": "^1.9.0",
     "peer": "^0.2.8",
     "pubsub-js": "^1.6.0",
     "react": "^16.2.0",
-
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
