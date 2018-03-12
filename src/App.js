@@ -6,6 +6,12 @@ import "./public/css/login.css";
 import FormCadastro from "./componentes/FormCadastro";
 import Home from "./routes/Home";
 
+// const apiBaseUrl =
+//   process.env.NODE_ENV === "development" ? "http://localhost:3001/" : "/";
+console.log(process.env.NODE_ENV);
+const apiBaseUrl = "/";
+
+console.log(apiBaseUrl);
 const Auth = {
   isAdmin: false,
   isAuthenticated: false,
@@ -20,7 +26,7 @@ const Auth = {
       })
     };
 
-    fetch("http://localhost:3001/api/autentica/token", req)
+    fetch(`${apiBaseUrl}api/autentica/token`, req)
       .then(res => {
         return res.json();
       })
@@ -47,23 +53,58 @@ const Auth = {
   }
 };
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      Auth.isAuthenticated ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/",
-            state: { from: props.location }
-          }}
-        />
-      )
-    }
-  />
-);
+// class PrivateRoute extends Component {
+//   constructor() {
+//     super();
+//   }
+
+// componentWillMount() {
+//   Auth.authenticate(console.log("cosegui!"));
+// }
+
+//   render() {
+//     console.log(this.props);
+//     var { component: Component, ...rest } = this.props;
+//
+//     return (
+//       <Route
+//         {...rest}
+//         render={props =>
+//           Auth.isAuthenticated ? (
+//             <Component {...props} />
+//           ) : (
+//             <Redirect
+//               to={{
+//                 pathname: "/",
+//                 state: { from: props.location }
+//               }}
+//             />
+//           )
+//         }
+//       />
+//     );
+//   }
+// }
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        Auth.isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/",
+              state: { from: props.location }
+            }}
+          />
+        )
+      }
+    />
+  );
+};
 
 export default class App extends Component {
   render() {
@@ -99,7 +140,7 @@ class FormLogin extends Component {
       })
     };
 
-    fetch("http://localhost:3001/api/autentica", requestInfo)
+    fetch(`${apiBaseUrl}api/autentica`, requestInfo)
       .then(res => {
         return res.json();
       })
@@ -127,7 +168,10 @@ class FormLogin extends Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    console.log(this.props);
+    const { from } = this.props.location.state || {
+      from: { pathname: "/home" }
+    };
     const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer) {
