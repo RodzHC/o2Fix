@@ -8,7 +8,9 @@ import Home from "./routes/Home";
 
 // const apiBaseUrl =
 //   process.env.NODE_ENV === "development" ? "http://localhost:3001/" : "/";
+
 console.log(process.env.NODE_ENV);
+
 const apiBaseUrl = "/";
 
 console.log(apiBaseUrl);

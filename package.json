@@ -17,10 +17,12 @@
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "serve": "^6.5.3"
   },
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
+    "now-start": "serve --single ./build",
     "server": "node start-api.js",
     "client": "react-scripts start",
     "start-dev": "nf start -p 3000",

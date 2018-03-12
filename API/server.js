@@ -17,7 +17,8 @@ var app = express();
 //Seta a porta (ou deixa ela em 3001)
 var port = process.env.API_PORT || 3001;
 app.set("superSecret", config.secret);
-mongoose.connect(config.database);
+
+mongoose.connect("mongodb://rodzhc:123@ds113179.mlab.com:13179/produ");
 const db = mongoose.connection;
 
 if (process.env.NODE_ENV === "production") {
