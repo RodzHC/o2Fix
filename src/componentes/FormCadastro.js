@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import InputCustomizado from "./InputCustomizado";
 import { Link } from "react-router-dom";
 
+const apiBaseUrl = "/";
+
 export default class FormCadastro extends Component {
   constructor() {
     super();
@@ -28,7 +30,7 @@ export default class FormCadastro extends Component {
       })
     };
 
-    fetch("http://localhost:3001/api/cadastro", requestInfo)
+    fetch(`${apiBaseUrl}api/cadastro`, requestInfo)
       .then(res => {
         return res.json();
       })

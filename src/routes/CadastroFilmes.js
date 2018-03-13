@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+const apiBaseUrl = "/";
 class FormularioFilmes extends Component {
   render() {
     var myObject = this.props.diretores;
@@ -91,7 +91,7 @@ export default class FilmesControl extends Component {
     this.state = { diretores: [] };
   }
   componentWillMount() {
-    fetch("http://localhost:3001/api/diretores")
+    fetch(`${apiBaseUrl}api/diretores`)
       .then(res => {
         return res.json();
       })
