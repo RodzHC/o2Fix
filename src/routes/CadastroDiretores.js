@@ -49,7 +49,7 @@ class FormularioDiretores extends Component {
     var update = this.updateDirectors;
 
     $.ajax({
-      url: `${apiBaseUrl}/api/diretores`,
+      url: `${apiBaseUrl}api/diretores`,
       contentType: "application/json",
       dataType: "json",
       type: "POST",
@@ -187,14 +187,14 @@ export default class DiretoresAdmin extends Component {
 
   componentDidMount() {
     $.ajax({
-      url: `${apiBaseUrl}/api/diretores`,
+      url: `${apiBaseUrl}api/diretores`,
       dataType: "json",
       success: function(lista) {
         this.setState({ diretores: lista });
       }.bind(this)
     });
     $.ajax({
-      url: `${apiBaseUrl}/api/cadastro/nacionalidade`,
+      url: `${apiBaseUrl}api/cadastro/nacionalidade`,
       dataType: "json",
       success: function(lista) {
         this.setState({ nacionalidade: lista });
