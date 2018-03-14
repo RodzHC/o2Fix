@@ -36,17 +36,6 @@ diretores = {
         .send({ success: false, message: "E-mail Obrigatório." });
     }
 
-    var errors = req.validationErrors();
-
-    if (errors) {
-      res.format({
-        json: function() {
-          res.status(400).json(errors);
-        }
-      });
-      return;
-    }
-
     function transformaData(data) {
       console.log(data);
       const regex = /(\d{4})-(\d\d)-(\d\d)/g;
@@ -69,13 +58,13 @@ diretores = {
 
     temp.save(function(err) {
       if (err) {
-        res.send(err);
+        return res.send(err);
       }
       cadastroDiretores.find(function(err, pessoas) {
         if (err) {
-          res.send(err);
+          return res.send(err);
         }
-        res.json(pessoas);
+        return res.json(pessoas);
       });
     });
   }

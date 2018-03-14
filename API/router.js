@@ -18,11 +18,16 @@ router
   .post(diretores.post);
 
 var cadastro = require("./routes/cadastro");
-
 router
   .route("/cadastro")
   .get(cadastro.get)
   .post(cadastro.post);
+
+var filmes = require("./routes/filmes");
+router
+  .route("/filmes")
+  .get(filmes.get)
+  .post(filmes.post);
 
 var autentica = require("./routes/autentica");
 
@@ -31,12 +36,5 @@ router.route("/autentica").post(autentica.post);
 var token = require("./routes/token");
 
 router.route("/autentica/token").post(token.post);
-
-var filmes = require("./routes/filmes");
-
-router
-  .route("/filmes")
-  .get(filmes.get)
-  .post(filmes.post);
 
 module.exports = router;

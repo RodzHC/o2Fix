@@ -96,8 +96,8 @@ class FormularioDiretores extends Component {
     return (
       <div className="autorForm">
         <form
-          className="pure-form pure-form-aligned"
           onSubmit={this.handleDiretoresSubmit}
+          className="pure-form pure-form-aligned"
         >
           <InputCustomizado
             id="diretorNome"
