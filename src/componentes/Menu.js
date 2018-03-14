@@ -18,15 +18,9 @@ export default class Menu extends Component {
             <a className="pure-menu-heading" href="#">
               O2Fix
             </a>
-
             <ul className="pure-menu-list">
               <li className="pure-menu-item">
-                <a href="#" className="pure-menu-link">
-                  Formularios
-                </a>
-              </li>
-              <li className="pure-menu-item">
-                <Link to="/home/filmes" href="#" className="pure-menu-link">
+                <Link href="#" className="pure-menu-link" to="/home/filmes">
                   Filmes
                 </Link>
               </li>
@@ -38,9 +32,23 @@ export default class Menu extends Component {
               </li>
 
               <li className="pure-menu-item">
-                <a href="#" className="pure-menu-link">
-                  Contato
-                </a>
+                <Link
+                  href="#"
+                  className="pure-menu-link"
+                  to="/home/cadastrodiretores"
+                >
+                  Cadastro de Diretores
+                </Link>
+              </li>
+
+              <li className="pure-menu-item">
+                <Link
+                  href="#"
+                  className="pure-menu-link"
+                  to="/home/cadastrofilmes"
+                >
+                  Cadastro de Filmes
+                </Link>
               </li>
             </ul>
           </div>
