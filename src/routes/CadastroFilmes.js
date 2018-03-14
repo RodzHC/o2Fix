@@ -6,6 +6,10 @@ class FormularioFilmes extends Component {
     this.state = { msg: "" };
   }
 
+  updateTabelaFilmes(json) {
+    console.log(json);
+  }
+
   handleFilmesSubmit(event) {
     event.preventDefault();
 
@@ -26,11 +30,13 @@ class FormularioFilmes extends Component {
         return res.json();
       })
       .then(mid => {
+        console.log(mid);
         if (mid.success === false) {
           var temp = mid.message;
           throw new Error(temp);
         } else if (mid.success === true) {
-          this.setState({ msg: mid.message });
+          console.log("Entreino no Sucess da fetch");
+          this.updateTabelaFilmes(mid);
         }
       })
       .catch(error => {

@@ -57,7 +57,11 @@ var filmes = {
         if (err) {
           return res.send(err);
         }
-        return res.json(pessoas);
+        return res.json({
+          success: true,
+          message: "Cadastro efetuado com sucesso !",
+          content: pessoas
+        });
       });
     });
   }
