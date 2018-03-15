@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TabelaFilmes from "../componentes/TabelaFilmes";
 
 export default class Diretores extends Component {
   render() {
@@ -7,6 +8,7 @@ export default class Diretores extends Component {
         <div className="header">
           <h1>Filmes</h1>
         </div>
+        <TabelaFilmes />
       </div>
     );
   }

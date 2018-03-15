@@ -17,6 +17,7 @@ console.log(apiBaseUrl);
 const Auth = {
   isAdmin: false,
   isAuthenticated: false,
+
   authenticate(callBack) {
     const req = {
       method: "POST",
