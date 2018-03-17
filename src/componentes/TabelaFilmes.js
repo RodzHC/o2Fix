@@ -46,7 +46,7 @@ export default class TabelaFilmes extends Component {
         <thead>
           <tr>
             <th>Titulo</th>
-            <th>Data de Lançamenoo</th>
+            <th>Data de Lançamenoto</th>
             <th>Diretor</th>
             <th>Sinopse</th>
           </tr>

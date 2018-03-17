@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import TabelaFilmes from "../componentes/TabelaFilmes";
+
 const apiBaseUrl = "/";
+
 class FormularioFilmes extends Component {
   constructor() {
     super();
@@ -121,24 +124,6 @@ class FormularioFilmes extends Component {
           </fieldset>
         </form>
       </div>
-    );
-  }
-}
-
-class TabelaFilmes extends Component {
-  render() {
-    return (
-      <table className="pure-table">
-        <thead>
-          <tr>
-            <th>Titulo</th>
-            <th>Data de nascimento</th>
-            <th>Diretor</th>
-            <th>Sinopse</th>
-          </tr>
-        </thead>
-        <tbody />
-      </table>
     );
   }
 }
