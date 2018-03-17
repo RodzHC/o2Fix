@@ -9,11 +9,8 @@ import Home from "./routes/Home";
 // const apiBaseUrl =
 //   process.env.NODE_ENV === "development" ? "http://localhost:3001/" : "/";
 
-console.log(process.env.NODE_ENV);
-
 const apiBaseUrl = "/";
 
-console.log(apiBaseUrl);
 const Auth = {
   isAdmin: false,
   isAuthenticated: false,
@@ -35,16 +32,16 @@ const Auth = {
       })
       .then(mid => {
         if (mid.success === false) {
-          const temp = mid.message;
-          throw new Error(temp);
+          const err = mid.message;
+          throw new Error(err);
         } else if (mid.success === true) {
           this.isAuthenticated = true;
-          console.log(mid.content.admin);
+
           if (mid.content.admin === true) {
             this.isAdmin = true;
           }
-          console.log(mid);
-          setTimeout(callBack, 100);
+
+          callBack();
         }
       })
       .catch(error => {
@@ -56,58 +53,55 @@ const Auth = {
   }
 };
 
-// class PrivateRoute extends Component {
-//   constructor() {
-//     super();
-//   }
+class PrivateRoute extends React.Component {
+  constructor() {
+    super();
+    this.state = { refresh: false };
+  }
 
-// componentWillMount() {
-//   Auth.authenticate(console.log("cosegui!"));
-// }
+  render() {
+    const { component: Component, ...rest } = this.props;
 
-//   render() {
-//     console.log(this.props);
-//     var { component: Component, ...rest } = this.props;
-//
-//     return (
-//       <Route
-//         {...rest}
-//         render={props =>
-//           Auth.isAuthenticated ? (
-//             <Component {...props} />
-//           ) : (
-//             <Redirect
-//               to={{
-//                 pathname: "/",
-//                 state: { from: props.location }
-//               }}
-//             />
-//           )
-//         }
-//       />
-//     );
-//   }
-// }
-
-const PrivateRoute = ({ component: Component, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        Auth.isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/",
-              state: { from: props.location }
-            }}
-          />
-        )
+    const renderRoute = props => {
+      if (Auth.isAuthenticated) {
+        return <Component {...props} />;
       }
-    />
-  );
-};
+
+      const to = {
+        pathname: "/",
+        state: { from: props.location }
+      };
+
+      return <Redirect to={to} />;
+    };
+    return <Route {...rest} render={renderRoute} />;
+  }
+}
+// const PrivateRoute = ({ component: Component, ...rest }) => {
+//   console.log("tentando autenticar");
+//   Auth.authenticate(() => {
+//       return console.log("Autenticado");
+//   });
+//   console.log("retornando...");
+//
+//   return (
+//     <Route
+//       {...rest}
+//       render={props =>
+//         Auth.isAuthenticated ? (
+//           <Component {...props} />
+//         ) : (
+//           <Redirect
+//             to={{
+//               pathname: "/",
+//               state: { from: props.location }
+//             }}
+//           />
+//         )
+//       }
+//     />
+//   );
+// };
 
 export default class App extends Component {
   render() {
@@ -127,6 +121,12 @@ class FormLogin extends Component {
   constructor() {
     super();
     this.state = { msg: "", redirectToReferrer: false };
+  }
+
+  componentWillMount() {
+    Auth.authenticate(() => {
+      this.setState({ redirectToReferrer: true });
+    });
   }
 
   envia(event) {
@@ -158,7 +158,7 @@ class FormLogin extends Component {
             email: ""
           });
           localStorage.setItem("auth-token", mid.token);
-          console.log(mid.token);
+
           Auth.authenticate(() => {
             this.setState({ redirectToReferrer: true });
           });
@@ -171,7 +171,6 @@ class FormLogin extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { from } = this.props.location.state || {
       from: { pathname: "/home" }
     };
