@@ -161,7 +161,6 @@ class TabelaDiretores extends Component {
       }
       return ar;
     }
-    console.log(myObject);
     var diretoresTabela = Varredor(myObject);
 
     return (
@@ -204,9 +203,6 @@ export default class DiretoresAdmin extends Component {
     PubSub.subscribe(
       "atualiza-lista-diretores",
       function(topicName, lista) {
-        console.log("recebeu pubsub e setou state diretores");
-        console.log(lista);
-
         this.setState({ diretores: lista });
       }.bind(this)
     );

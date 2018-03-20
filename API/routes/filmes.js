@@ -5,60 +5,16 @@ var cadastroDiretores = require("../model/cadastroDiretoresMM.js");
 
 var filmes = {
   get: function(req, res) {
-    cadastroFilmes.find(function(err, fi) {
-      if (err) {
-        return res.send(err);
-      }
-
-      try {
-        console.log(Object.keys(fi));
-      } catch (e) {
-        console.log(e);
-      }
-      console.log(
-        `Filme tem a propriedade teste ? ${fi[0].hasOwnProperty("teste")}`
-      );
-      console.log(`teste : ${fi[0].teste}`);
-
-      console.log(
-        `Filme tem a propriedade filmeDiretor ? ${fi[0].hasOwnProperty(
-          "filmeDiretor"
-        )}`
-      );
-
-      let temp = fi.map(async filme => {
-        return new Promise(function(resolve, reject) {
-          cadastroDiretores.find({ _id: filme.filmeDiretor }, function(
-            err,
-            diretor
-          ) {
-            if (err) {
-              return reject(err);
-            }
-
-            try {
-              console.log(`Keys do filme ?${Object.keys(filme)}`);
-              filme.filmeDiretor = diretor;
-            } catch (err) {
-              console.log(err);
-            }
-
-            return resolve(filme);
-          });
-        });
+    cadastroFilmes
+      .find()
+      .populate("filmeDiretor")
+      .exec(function(err, filmes) {
+        if (err) {
+          console.log(err);
+          return res.status(500).json(err);
+        }
+        return res.json(filmes);
       });
-
-      console.log(temp);
-
-      Promise.all(temp)
-        .then(t => {
-          console.log("respondendo json");
-          return res.json(t);
-        })
-        .catch(err => {
-          return res.status(500).json;
-        });
-    });
   },
   post: function(req, res) {
     if (!req.body.filmeTitulo) {

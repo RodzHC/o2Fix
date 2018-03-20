@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TabelaFilmes from "../componentes/TabelaFilmes";
+import PubSub from "pubsub-js";
 
 const apiBaseUrl = "/";
 
@@ -9,8 +10,10 @@ class FormularioFilmes extends Component {
     this.state = { msg: "" };
   }
 
-  updateTabelaFilmes(json) {
-    console.log(json);
+  updateTabelaFilmes(filmes) {
+    console.log(`updateTabelaFilmes recebendo : ${filmes}`);
+
+    PubSub.publish("atualiza-tabelaFilmes", { filmes });
   }
 
   handleFilmesSubmit(event) {
@@ -38,7 +41,8 @@ class FormularioFilmes extends Component {
           var temp = mid.message;
           throw new Error(temp);
         } else if (mid.success === true) {
-          console.log("Entreino no Sucess da fetch");
+          console.log("Cadastro efetuado com sucesso");
+
           this.updateTabelaFilmes(mid);
         }
       })

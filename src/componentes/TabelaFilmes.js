@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PubSub from "pubsub-js";
 
 export default class TabelaFilmes extends Component {
   constructor() {
@@ -7,13 +8,18 @@ export default class TabelaFilmes extends Component {
   }
 
   componentWillMount() {
+    PubSub.subscribe(
+      "atualiza-tabelaFilmes",
+      function(topicName, filmes) {
+        this.setState({ lista: filmes.filmes.content });
+      }.bind(this)
+    );
+
     fetch("/api/filmes")
       .then(res => {
         return res.json();
       })
       .then(res => {
-        console.log(res);
-        console.log(res.hasOwnProperty("teste"));
         this.setState({ lista: res });
       })
       .catch(err => {
@@ -23,7 +29,6 @@ export default class TabelaFilmes extends Component {
 
   render() {
     var myObject = this.state.lista;
-    console.log(myObject);
 
     function Varredor(obj) {
       var ar = [];
@@ -33,7 +38,7 @@ export default class TabelaFilmes extends Component {
           <tr key={obj[key]._id}>
             <td>{obj[key].filmeTitulo}</td>
             <td>{obj[key].filmeDataLancamento}</td>
-            <td>{obj[key].filmeDiretor}</td>
+            <td>{obj[key].filmeDiretor.diretorNome}</td>
             <td>{obj[key].filmeSinopse}</td>
           </tr>
         );

@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import TabelaFilmes from "../componentes/TabelaFilmes";
 
 export default class Diretores extends Component {
+  constructor() {
+    super();
+    this.state = { lista: [] };
+  }
+
   render() {
     return (
       <div>

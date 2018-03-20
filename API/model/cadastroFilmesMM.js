@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
 var cadastroFilmesSchema = mongoose.Schema({
   filmeTitulo: {
@@ -7,7 +8,7 @@ var cadastroFilmesSchema = mongoose.Schema({
     unique: true
   },
   filmeDataLancamento: String,
-  filmeDiretor: String,
+  filmeDiretor: { type: Schema.Types.ObjectId, ref: "cadastroDiretores" },
   filmeSinopse: String
 });
 

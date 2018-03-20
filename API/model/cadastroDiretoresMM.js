@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
 var cadastroDiretoresSchema = mongoose.Schema({
   diretorNome: {
@@ -7,7 +8,9 @@ var cadastroDiretoresSchema = mongoose.Schema({
     unique: true
   },
   diretorDataNascimento: String,
-  diretorNacionalidade: String
+  diretorNacionalidade: String,
+
+  diretorFilmes: [{ type: Schema.Types.ObjectId, ref: "cadastroFilmes" }]
 });
 
 module.exports = mongoose.model("cadastroDiretores", cadastroDiretoresSchema);

@@ -36,7 +36,6 @@ export default class TabelaDiretores extends Component {
       }
       return ar;
     }
-    console.log(myObject);
     var diretoresTabela = Varredor(myObject);
 
     return (
