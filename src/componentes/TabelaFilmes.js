@@ -12,6 +12,8 @@ export default class TabelaFilmes extends Component {
         return res.json();
       })
       .then(res => {
+        console.log(res);
+        console.log(res.hasOwnProperty("teste"));
         this.setState({ lista: res });
       })
       .catch(err => {

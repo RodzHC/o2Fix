@@ -5,10 +5,12 @@ export default class Diretores extends Component {
   render() {
     return (
       <div>
-        <div className="header">
-          <h1>Filmes</h1>
+        <div className="content">
+          <div className="header">
+            <h1>Filmes</h1>
+          </div>
+          <TabelaFilmes />
         </div>
-        <TabelaFilmes />
       </div>
     );
   }
