@@ -7,7 +7,7 @@ const apiBaseUrl = "/";
 class FormularioFilmes extends Component {
   constructor() {
     super();
-    this.state = { msg: "" };
+    this.state = { msg: "", valueDate: "", formattedValue: "" };
   }
 
   updateTabelaFilmes(filmes) {
@@ -66,37 +66,43 @@ class FormularioFilmes extends Component {
     return (
       <div>
         <span>{this.state.msg}</span>
-        <form
-          className="pure-form pure-form-aligned"
-          onSubmit={this.handleFilmesSubmit.bind(this)}
-        >
+        <form onSubmit={this.handleFilmesSubmit.bind(this)}>
           <fieldset>
-            <div className="pure-control-group">
-              <label name="filme-titulo">Titulo :</label>
+            <div className="form-group">
+              <label htmlFor="filme-titulo" name="filme-titulo">
+                Titulo :
+              </label>
               <input
+                className="form-control"
                 id="filme-titulo"
                 type="text"
+                aria-describedby="emailHelp"
                 placeholder="Nome do Filme"
                 ref={input => (this.filmeTitulo = input)}
               />
-              <span className="pure-form-message-inline" />
+              <span className="form-text text-muted" />
             </div>
 
-            <div className="pure-control-group">
-              <label name="data-lancamento">Data de Lançamento :</label>
+            <div className="form-group">
+              <label htmlFor="input-date" name="data-lancamento">
+                Data de Lançamento :
+              </label>
               <input
-                id="data-lancamento"
+                className="form-control"
+                id="input-date"
                 type="date"
-                placeholder="Password"
                 ref={input => (this.filmeDataLancamento = input)}
               />
-              <span className="pure-form-message-inline" />
+              <span className="form-text text-muted" />
             </div>
 
-            <div className="pure-control-group">
-              <label name="diretores">Diretor :</label>
+            <div className="form-group">
+              <label htmlFor="input-select" name="diretores">
+                Diretor :
+              </label>
               <select
-                name="filmeDiretores"
+                id="input-select"
+                className="form-control"
                 ref={input => (this.filmeDiretor = input)}
               >
                 <option value="" disabled selected>
@@ -104,27 +110,26 @@ class FormularioFilmes extends Component {
                 </option>
                 {mapDiretores}
               </select>
-              <span className="pure-form-message-inline" />
+              <span className="form-text text-muted" />
             </div>
 
-            <div className="pure-control-group">
-              <label name="foo">Sinopse :</label>
+            <div className="form-group">
+              <label htmlFor="input-textarea">Sinopse :</label>
               <textarea
+                id="input-textarea"
+                className="form-control"
                 ref={input => (this.filmeSinopse = input)}
                 rows="4"
                 cols="50"
-                name="comment"
                 form="usrform"
                 placeholder="Escreva a sinopse aqui ...."
               />
-              <span className="pure-form-message-inline" />
+              <span className="form-text text-muted" />
             </div>
 
-            <div className="pure-controls">
-              <button type="submit" className="pure-button pure-button-primary">
-                Submit
-              </button>
-            </div>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
           </fieldset>
         </form>
       </div>

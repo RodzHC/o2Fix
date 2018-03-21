@@ -77,31 +77,6 @@ class PrivateRoute extends React.Component {
     return <Route {...rest} render={renderRoute} />;
   }
 }
-// const PrivateRoute = ({ component: Component, ...rest }) => {
-//   console.log("tentando autenticar");
-//   Auth.authenticate(() => {
-//       return console.log("Autenticado");
-//   });
-//   console.log("retornando...");
-//
-//   return (
-//     <Route
-//       {...rest}
-//       render={props =>
-//         Auth.isAuthenticated ? (
-//           <Component {...props} />
-//         ) : (
-//           <Redirect
-//             to={{
-//               pathname: "/",
-//               state: { from: props.location }
-//             }}
-//           />
-//         )
-//       }
-//     />
-//   );
-// };
 
 export default class App extends Component {
   render() {

@@ -39,7 +39,7 @@ export default class TabelaDiretores extends Component {
     var diretoresTabela = Varredor(myObject);
 
     return (
-      <table className="pure-table">
+      <table className="table">
         <thead>
           <tr>
             <th>Nome</th>

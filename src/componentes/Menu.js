@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../public/css/pure.css";
+import "../public/css/side-bar.css";
 
 export default class Menu extends Component {
   constructor() {

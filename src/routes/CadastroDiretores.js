@@ -95,48 +95,48 @@ class FormularioDiretores extends Component {
 
     return (
       <div className="autorForm">
-        <form
-          onSubmit={this.handleDiretoresSubmit}
-          className="pure-form pure-form-aligned"
-        >
-          <InputCustomizado
-            id="diretorNome"
-            name="diretorNome"
-            label="Nome do diretor: "
-            type="text"
-            value={this.state.diretorNome}
-            placeholder="Nome do diretor"
-            onChange={this.setDiretorNome}
-          />
-          <InputCustomizado
-            placeholder=""
-            id="diretorDataNascimento"
-            name="diretorDataNascimento"
-            label="Data de nascimento: "
-            type="date"
-            value={this.state.diretorDataNascimento}
-            onChange={this.setDiretorDataNascimento}
-          />
+        <form onSubmit={this.handleDiretoresSubmit}>
+          <fieldset>
+            <InputCustomizado
+              id="diretorNome"
+              name="diretorNome"
+              label="Nome do diretor: "
+              type="text"
+              value={this.state.diretorNome}
+              placeholder="Nome do diretor"
+              onChange={this.setDiretorNome}
+            />
+            <InputCustomizado
+              placeholder=""
+              id="diretorDataNascimento"
+              name="diretorDataNascimento"
+              label="Data de nascimento: "
+              type="date"
+              value={this.state.diretorDataNascimento}
+              onChange={this.setDiretorDataNascimento}
+            />
 
-          <div className="pure-control-group">
-            <label>Nacionalidade</label>
-            <select
-              value={this.state.diretorNacionalidade}
-              name="diretorNacionalidade"
-              onChange={this.setDiretorNacionalidade}
-            >
-              <option value="" disabled value>
-                Selecione
-              </option>
-              {meuPiru}
-            </select>
-          </div>
-          <div className="pure-control-group">
+            <div className="form-group">
+              <label htmlFor="imput-select">Nacionalidade</label>
+              <select
+                id="imput-select"
+                className="form-control"
+                value={this.state.diretorNacionalidade}
+                name="diretorNacionalidade"
+                onChange={this.setDiretorNacionalidade}
+              >
+                <option value="" disabled value>
+                  Selecione
+                </option>
+                {meuPiru}
+              </select>
+            </div>
+
             <label />
-            <button type="submit" className="pure-button pure-button-primary">
+            <button type="submit" className="btn btn-primary">
               Gravar
             </button>
-          </div>
+          </fieldset>
         </form>
       </div>
     );
@@ -164,7 +164,7 @@ class TabelaDiretores extends Component {
     var diretoresTabela = Varredor(myObject);
 
     return (
-      <table className="pure-table">
+      <table className="table">
         <thead>
           <tr>
             <th>Nome</th>

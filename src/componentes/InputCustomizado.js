@@ -9,9 +9,10 @@ export default class InputCustomizado extends Component {
 
   render() {
     return (
-      <div className="pure-control-group">
+      <div className="form-group">
         <label htmlFor={this.props.id}>{this.props.label}</label>
         <input
+          className="form-control"
           id={this.props.id}
           type={this.props.type}
           name={this.props.name}
@@ -19,9 +20,7 @@ export default class InputCustomizado extends Component {
           onChange={this.props.onChange}
           placeholder={this.props.placeholder}
         />
-        <span className="error pure-form-message-inline">
-          {this.state.msgErro}
-        </span>
+        <span className="form-text text-muted">{this.state.msgErro}</span>
       </div>
     );
   }

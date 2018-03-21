@@ -49,7 +49,7 @@ export default class TabelaFilmes extends Component {
     var filmes = Varredor(myObject);
 
     return (
-      <table className="pure-table">
+      <table className="table">
         <thead>
           <tr>
             <th>Titulo</th>
