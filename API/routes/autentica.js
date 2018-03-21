@@ -20,7 +20,6 @@ var autentica = {
       console.log("Vou tentar iniciar o User");
 
       User.authenticate(req.body.email, req.body.senha, function(error, user) {
-        console.log("entrei na callback do authenticate");
         if (error || !user) {
           return res
             .status(400)
@@ -29,7 +28,7 @@ var autentica = {
           // if user is found and password is right
           // create a token
           var payload = {
-            admin: user.admin
+            roles: { admin: user.admin }
           };
           var token = jwt.sign(payload, config.secret, {
             expiresIn: 86400 // expires in 24 hours

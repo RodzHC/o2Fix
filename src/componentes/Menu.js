@@ -22,17 +22,13 @@ export default class Menu extends Component {
             </a>
             <ul className="pure-menu-list">
               <li className="pure-menu-item">
-                <Link
-                  href="Filmes"
-                  className="pure-menu-link"
-                  to="/home/filmes"
-                >
+                <Link href="#" className="pure-menu-link" to="/home/filmes">
                   Filmes
                 </Link>
               </li>
 
               <li className="pure-menu-item ">
-                <Link href="Diretores" to="/home/diretores">
+                <Link href="#" to="/home/diretores">
                   Diretores
                 </Link>
               </li>
@@ -54,6 +50,12 @@ export default class Menu extends Component {
                   to="/home/cadastrofilmes"
                 >
                   Cadastro de Filmes
+                </Link>
+              </li>
+
+              <li className="pure-menu-item">
+                <Link href="#" className="pure-menu-link" to="/home/userm">
+                  User Management
                 </Link>
               </li>
             </ul>

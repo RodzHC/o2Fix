@@ -6,6 +6,7 @@ import CadastroDiretores from "./CadastroDiretores";
 import CadastroFilmes from "./CadastroFilmes";
 import Diretores from "./Diretores";
 import Filmes from "./Filmes";
+import UserManagement from "./UserManagement";
 
 export default class Main extends Component {
   render() {
@@ -16,6 +17,7 @@ export default class Main extends Component {
         <Route path="/home/filmes" component={Filmes} />
         <Route path="/home/cadastrofilmes" component={CadastroFilmes} />
         <Route path="/home/cadastrodiretores" component={CadastroDiretores} />
+        <Route path="/home/userm" component={UserManagement} />
       </main>
     );
   }

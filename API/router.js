@@ -37,4 +37,8 @@ var token = require("./routes/token");
 
 router.route("/autentica/token").post(token.post);
 
+var users = require("./routes/users");
+
+router.route("/users").get(users.get);
+
 module.exports = router;
