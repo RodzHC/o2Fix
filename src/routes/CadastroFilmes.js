@@ -72,6 +72,7 @@ class FormularioFilmes extends Component {
               <label htmlFor="filme-titulo" name="filme-titulo">
                 Titulo :
               </label>
+
               <input
                 className="form-control"
                 id="filme-titulo"
@@ -154,8 +155,10 @@ export default class FilmesControl extends Component {
 
   render() {
     return (
-      <div className="header">
-        <h1>Cadastro de Filmes</h1>
+      <div>
+        <div className="header">
+          <h1>Cadastro de Filmes</h1>
+        </div>
         <div className="content">
           <FormularioFilmes diretores={this.state.diretores} />
           <TabelaFilmes />

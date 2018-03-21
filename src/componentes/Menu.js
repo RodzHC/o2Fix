@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import "../public/css/pure.css";
 import "../public/css/side-bar.css";
 
@@ -21,13 +22,17 @@ export default class Menu extends Component {
             </a>
             <ul className="pure-menu-list">
               <li className="pure-menu-item">
-                <Link href="#" className="pure-menu-link" to="/home/filmes">
+                <Link
+                  href="Filmes"
+                  className="pure-menu-link"
+                  to="/home/filmes"
+                >
                   Filmes
                 </Link>
               </li>
 
               <li className="pure-menu-item ">
-                <Link href="cadastrosDiretores" to="/home/diretores">
+                <Link href="Diretores" to="/home/diretores">
                   Diretores
                 </Link>
               </li>
