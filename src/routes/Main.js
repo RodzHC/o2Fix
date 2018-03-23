@@ -8,10 +8,25 @@ import Diretores from "./Diretores";
 import Filmes from "./Filmes";
 import UserManagement from "./UserManagement";
 
+import LogoutButton from "../componentes/LogoutButton";
+
+class AdminRoute extends Component {
+  constructor() {
+    super();
+    this.state = { refresh: "" };
+  }
+
+  render() {
+    return;
+  }
+}
+
 export default class Main extends Component {
   render() {
     return (
       <main>
+        <LogoutButton />
+
         <Route exact path="/home" component={HomeInit} />
         <Route path="/home/diretores" component={Diretores} />
         <Route path="/home/filmes" component={Filmes} />

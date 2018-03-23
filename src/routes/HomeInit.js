@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import LogoutButton from "../componentes/LogoutButton";
 
 export default class HomeInit extends Component {
   render() {
