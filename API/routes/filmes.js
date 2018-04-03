@@ -3,6 +3,8 @@ var router = express.Router();
 var cadastroFilmes = require("../model/cadastroFilmesMM.js");
 var cadastroDiretores = require("../model/cadastroDiretoresMM.js");
 
+var mongoose = require("mongoose");
+
 var filmes = {
   get: function(req, res) {
     cadastroFilmes
@@ -49,25 +51,38 @@ var filmes = {
     }
 
     var temp = new cadastroFilmes();
+    var ObjectId = mongoose.Types.ObjectId;
+
+    const idTemp = new ObjectId();
+
     temp.filmeTitulo = req.body.filmeTitulo;
     temp.filmeDataLancamento = transformaData(req.body.filmeDataLancamento);
     temp.filmeDiretor = req.body.filmeDiretor;
     temp.filmeSinopse = req.body.filmeSinopse;
+    temp._id = idTemp;
 
     temp.save(function(err) {
       if (err) {
         return res.send(err);
       }
-      cadastroFilmes.find(function(err, pessoas) {
-        if (err) {
-          return res.send(err);
-        }
-        return res.json({
-          success: true,
-          message: "Cadastro efetuado com sucesso !",
-          content: pessoas
-        });
-      });
+
+      cadastroDiretores
+        .update(
+          { _id: temp.filmeDiretor },
+          { $push: { diretorFilmes: temp._id } }
+        )
+        .exec(
+          cadastroFilmes.find(function(err, pessoas) {
+            if (err) {
+              return res.send(err);
+            }
+            return res.json({
+              success: true,
+              message: "Cadastro efetuado com sucesso !",
+              content: pessoas
+            });
+          })
+        );
     });
   }
 };

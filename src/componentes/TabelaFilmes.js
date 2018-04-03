@@ -1,13 +1,21 @@
 import React, { Component } from "react";
 import PubSub from "pubsub-js";
 
+import { Route, Link } from "react-router-dom";
+
+const SinopseView = props => {
+  console.log(props);
+
+  return <td>{props.match.params.sinopse}</td>;
+};
+
 export default class TabelaFilmes extends Component {
   constructor() {
     super();
     this.state = { lista: [] };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     PubSub.subscribe(
       "atualiza-tabelaFilmes",
       function(topicName, filmes) {
@@ -34,13 +42,39 @@ export default class TabelaFilmes extends Component {
       var ar = [];
 
       for (var key in obj) {
+        var sinopseTemp = obj[key].filmeSinopse;
+        var sinBoxTemp;
+        if (sinopseTemp.length > 15) {
+          sinopseTemp = (
+            <Link
+              href="#"
+              className="pure-menu-link"
+              to={`/home/filmes/sinopse/${obj[key].filmeSinopse}`}
+            >
+              {`${obj[key].filmeSinopse.substring(0, 9)}...`}
+            </Link>
+          );
+
+          sinBoxTemp = (
+            <tr>
+              <Route
+                path="/home/filmes/sinopse/:sinopse"
+                component={SinopseView}
+              />
+            </tr>
+          );
+        }
+
         ar.push(
-          <tr key={obj[key]._id}>
-            <td>{obj[key].filmeTitulo}</td>
-            <td>{obj[key].filmeDataLancamento}</td>
-            <td>{obj[key].filmeDiretor.diretorNome}</td>
-            <td>{obj[key].filmeSinopse}</td>
-          </tr>
+          <tbody>
+            <tr key={obj[key]._id}>
+              <td>{obj[key].filmeTitulo}</td>
+              <td>{obj[key].filmeDataLancamento}</td>
+              <td>{obj[key].filmeDiretor.diretorNome}</td>
+              <td>{sinopseTemp}</td>
+            </tr>
+            {sinBoxTemp}
+          </tbody>
         );
       }
       return ar;
@@ -58,7 +92,7 @@ export default class TabelaFilmes extends Component {
             <th>Sinopse</th>
           </tr>
         </thead>
-        <tbody>{filmes}</tbody>
+        {filmes}
       </table>
     );
   }

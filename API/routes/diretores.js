@@ -6,13 +6,16 @@ var nat = require("../nacionalidadesId.json");
 
 diretores = {
   get: function(req, res) {
-    cadastroDiretores.find(function(err, pessoas) {
-      if (err) {
-        res.send(err);
-      }
-
-      res.json(pessoas);
-    });
+    cadastroDiretores
+      .find()
+      .populate("diretorFilmes")
+      .exec(function(err, filmes) {
+        if (err) {
+          console.log(err);
+          return res.status(500).json(err);
+        }
+        return res.json(filmes);
+      });
   },
   post: function(req, res) {
     if (!req.body.diretorNome) {

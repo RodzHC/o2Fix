@@ -10,6 +10,9 @@ import UserManagement from "./UserManagement";
 
 import LogoutButton from "../componentes/LogoutButton";
 
+import filmesView from "./Views/filmesView";
+import diretoresView from "./Views/diretoresView";
+
 class AdminRoute extends Component {
   constructor() {
     super();
@@ -33,6 +36,7 @@ export default class Main extends Component {
         <Route path="/home/cadastrofilmes" component={CadastroFilmes} />
         <Route path="/home/cadastrodiretores" component={CadastroDiretores} />
         <Route path="/home/userm" component={UserManagement} />
+        <Route path="/diretores/:nome" component={diretoresView} />
       </main>
     );
   }
