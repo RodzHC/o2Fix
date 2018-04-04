@@ -24,7 +24,6 @@ const Auth = {
           throw new Error(err);
         } else if (mid.success === true) {
           this.isAuthenticated = true;
-          console.log(mid);
           if (mid.content.roles.admin === true) {
             this.isAdmin = true;
           }

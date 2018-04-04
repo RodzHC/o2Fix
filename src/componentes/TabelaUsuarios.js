@@ -12,7 +12,6 @@ export default class TabelaUsuarios extends Component {
         return mid.json();
       })
       .then(res => {
-        console.log(res);
         this.setState({ lista: res });
       });
   }
@@ -25,8 +24,8 @@ export default class TabelaUsuarios extends Component {
 
       for (var key in obj) {
         var temp = "Yes";
-        if (obj[key].admin == false) {
-          var temp = "No";
+        if (obj[key].admin === false) {
+          temp = "No";
         }
 
         ar.push(

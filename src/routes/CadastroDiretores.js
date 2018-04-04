@@ -125,7 +125,7 @@ class FormularioDiretores extends Component {
                 name="diretorNacionalidade"
                 onChange={this.setDiretorNacionalidade}
               >
-                <option value="" disabled value>
+                <option disabled value>
                   Selecione
                 </option>
                 {meuPiru}

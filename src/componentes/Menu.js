@@ -11,15 +11,11 @@ export default class Menu extends Component {
   }
 
   render() {
-    const { isBlocking } = this.state;
-
     return (
       <div>
         <div id="menu">
           <div className="pure-menu">
-            <a className="pure-menu-heading" href="#">
-              O2Fix
-            </a>
+            <a className="pure-menu-heading">O2Fix</a>
             <ul className="pure-menu-list">
               <li className="pure-menu-item">
                 <Link href="#" className="pure-menu-link" to="/home/filmes">

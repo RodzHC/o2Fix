@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 const filmesView = ({ match }) => {
   var teste = 1;
   if (!teste) {

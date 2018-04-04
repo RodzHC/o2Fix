@@ -12,7 +12,6 @@ export default class TabelaDiretores extends Component {
         return res.json();
       })
       .then(res => {
-        console.log(res);
         this.setState({ lista: res });
       })
       .catch(err => {

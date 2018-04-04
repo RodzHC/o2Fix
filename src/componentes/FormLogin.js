@@ -10,7 +10,6 @@ export default class FormComponent extends Component {
 
   envia(event) {
     event.preventDefault();
-    console.log(this);
     const requestInfo = {
       method: "POST",
       body: JSON.stringify({
@@ -37,7 +36,6 @@ export default class FormComponent extends Component {
             email: ""
           });
           localStorage.setItem("auth-token", mid.token);
-          console.log(mid.token);
         }
       })
       .catch(error => {

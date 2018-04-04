@@ -4,8 +4,6 @@ import PubSub from "pubsub-js";
 import { Route, Link } from "react-router-dom";
 
 const SinopseView = props => {
-  console.log(props);
-
   return <td>{props.match.params.sinopse}</td>;
 };
 

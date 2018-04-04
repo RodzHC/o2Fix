@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 import HomeInit from "./HomeInit";
 import CadastroDiretores from "./CadastroDiretores";
@@ -10,19 +10,7 @@ import UserManagement from "./UserManagement";
 
 import LogoutButton from "../componentes/LogoutButton";
 
-import filmesView from "./Views/filmesView";
 import diretoresView from "./Views/diretoresView";
-
-class AdminRoute extends Component {
-  constructor() {
-    super();
-    this.state = { refresh: "" };
-  }
-
-  render() {
-    return;
-  }
-}
 
 export default class Main extends Component {
   render() {
