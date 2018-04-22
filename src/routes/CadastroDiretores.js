@@ -17,6 +17,9 @@ class FormularioDiretores extends Component {
     this.setDiretorNacionalidade = this.setDiretorNacionalidade.bind(this);
     this.handleDiretoresSubmit = this.handleDiretoresSubmit.bind(this);
   }
+  componentDidMount() {
+    document.title = "O2Fix - Cadastro Diretores";
+  }
 
   setDiretorNome(e) {
     this.setState({ diretorNome: e.target.value });

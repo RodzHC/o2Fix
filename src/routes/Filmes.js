@@ -6,6 +6,9 @@ export default class Diretores extends Component {
     super();
     this.state = { lista: [] };
   }
+  componentDidMount() {
+    document.title = "O2Fix - Lista Filmes";
+  }
 
   render() {
     return (

@@ -9,6 +9,9 @@ class FormularioFilmes extends Component {
     super();
     this.state = { msg: "", valueDate: "", formattedValue: "" };
   }
+  componentDidMount() {
+    document.title = "O2Fix - Cadastro Filmes";
+  }
 
   updateTabelaFilmes(filmes) {
     PubSub.publish("atualiza-tabelaFilmes", { filmes });

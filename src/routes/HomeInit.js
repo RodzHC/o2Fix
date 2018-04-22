@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 
 export default class HomeInit extends Component {
+  componentDidMount() {
+    document.title = "Home";
+  }
+
   render() {
     return (
       <div>

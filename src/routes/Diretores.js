@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import TabelaDiretores from "../componentes/TabelaDiretores";
 
 export default class Diretores extends Component {
+  componentDidMount() {
+    document.title = "O2Fix - Lista Diretores";
+  }
   render() {
     return (
       <div>

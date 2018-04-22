@@ -14,7 +14,9 @@ export default class FormCadastro extends Component {
     this.setSenha = this.setSenha.bind(this);
     this.setSenhaCheck = this.setSenhaCheck.bind(this);
   }
-
+  componentDidMount() {
+    document.title = "O2Fix - Cadastro";
+  }
   enviaForm(evento) {
     evento.preventDefault();
     const requestInfo = {

@@ -8,6 +8,10 @@ export default class UserManagement extends Component {
     this.state = { lista: [] };
   }
 
+  componentDidMount() {
+    document.title = "O2Fix - User Management";
+  }
+
   render() {
     return (
       <div>
