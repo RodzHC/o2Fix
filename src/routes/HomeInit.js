@@ -4,7 +4,7 @@ export default class HomeInit extends Component {
   render() {
     return (
       <div>
-        <div className="header">
+        <div className="header text-center">
           <h1>Bem vindo ao sistema</h1>
         </div>
       </div>

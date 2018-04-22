@@ -12,7 +12,7 @@ export default class UserManagement extends Component {
     return (
       <div>
         <div className="content">
-          <div className="header">
+          <div className="header text-center">
             <h1>User Management</h1>
           </div>
           <TabelaUsuarios />

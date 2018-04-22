@@ -6,7 +6,7 @@ export default class Diretores extends Component {
     return (
       <div>
         <div className="content">
-          <div className="header">
+          <div className="header text-center">
             <h1>Diretores</h1>
           </div>
           <TabelaDiretores />
