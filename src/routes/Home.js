@@ -4,11 +4,36 @@ import Menu from "../componentes/Menu";
 import Main from "./Main";
 
 export default class IndexAdmin extends Component {
+  constructor() {
+    super();
+    this.state = { button: "" };
+    this.changeButton = this.changeButton.bind(this);
+  }
+
+  changeButton() {
+    if (this.state.button == "") this.setState({ button: "active" });
+    else {
+      this.setState({ button: "" });
+    }
+  }
+
   render() {
     return (
-      <div>
-        <Menu />
-        <Main />
+      <div className="wrapper">
+        <Menu botao={this.state.button} />
+
+        <div id="content">
+          <button
+            type="button"
+            id="sidebarCollapse"
+            className="btn btn-info navbar-btn"
+            onClick={this.changeButton}
+          >
+            <i className="glyphicon glyphicon-align-left" />
+            Toggle Sidebar
+          </button>
+          <Main />
+        </div>
       </div>
     );
   }
