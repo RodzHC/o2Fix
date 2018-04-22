@@ -16,6 +16,10 @@ export default class Menu extends Component {
     return (
       <div>
         <div id="sidebar" className={this.props.botao}>
+          <div id="dismiss">
+            <i class="glyphicon glyphicon-arrow-left" />
+          </div>
+
           <h3 className="sidebar-header">O2Fix</h3>
           <ul className="list-unstyled components">
             <li className="active">
