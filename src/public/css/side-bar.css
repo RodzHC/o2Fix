@@ -71,19 +71,19 @@ a:focus {
 
 #sidebar {
   /* don't forget to add all the previously mentioned styles here too */
-  background: #7386d5;
+  background: #1fb5bf;
   color: #fff;
   transition: all 0.3s;
 }
 
 #sidebar .sidebar-header {
   padding: 20px;
-  background: #6d7fcc;
+  background: #1ba2ab;
 }
 
 #sidebar ul.components {
   padding: 20px 0;
-  border-bottom: 1px solid #47748b;
+  border-bottom: 1px solid #1ba2ab;
 }
 
 #sidebar ul p {
@@ -104,10 +104,10 @@ a:focus {
 #sidebar ul li.active > a,
 a[aria-expanded="true"] {
   color: #fff;
-  background: #6d7fcc;
+  background: #1ba2ab;
 }
 ul ul a {
   font-size: 0.9em !important;
   padding-left: 30px !important;
-  background: #6d7fcc;
+  background: #1ba2ab;
 }
