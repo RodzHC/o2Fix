@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 
 export default class HomeInit extends Component {
+  constructor() {
+    super();
+  }
+
   componentDidMount() {
     document.title = "Home";
   }
@@ -8,7 +12,7 @@ export default class HomeInit extends Component {
   render() {
     return (
       <div>
-        <div className="header text-center">
+        <div className={`${this.props.headerClass}`}>
           <h1>Bem vindo ao sistema</h1>
         </div>
       </div>

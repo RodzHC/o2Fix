@@ -13,10 +13,10 @@ export default class Diretores extends Component {
   render() {
     return (
       <div>
+        <div className={`${this.props.headerClass}`}>
+          <h1>Filmes</h1>
+        </div>
         <div className="content">
-          <div className="header text-center">
-            <h1>Filmes</h1>
-          </div>
           <TabelaFilmes />
         </div>
       </div>

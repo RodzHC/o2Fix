@@ -154,7 +154,7 @@ export default class FilmesControl extends Component {
   render() {
     return (
       <div>
-        <div className="header text-center">
+        <div className={`${this.props.headerClass}`}>
           <h1>Cadastro de Filmes</h1>
         </div>
         <div className="content">

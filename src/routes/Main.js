@@ -13,16 +13,51 @@ import diretoresView from "./Views/diretoresView";
 
 export default class Main extends Component {
   render() {
+    const headerClass = "header text-center headerClass";
     return (
       <main>
         <Switch>
-          <Route exact path="/home" component={HomeInit} />
-          <Route path="/home/diretores" component={Diretores} />
-          <Route path="/home/filmes" component={Filmes} />
-          <Route path="/home/cadastrofilmes" component={CadastroFilmes} />
-          <Route path="/home/cadastrodiretores" component={CadastroDiretores} />
-          <Route path="/home/userm" component={UserManagement} />
-          <Route path="/diretores/:nome" component={diretoresView} />
+          <Route
+            exact
+            path="/home"
+            headerClass={headerClass}
+            component={HomeInit}
+          />
+          <Route
+            path="/home/diretores"
+            render={routeProps => (
+              <Diretores {...routeProps} headerClass={headerClass} />
+            )}
+          />
+          <Route
+            path="/home/filmes"
+            render={routeProps => (
+              <Filmes {...routeProps} headerClass={headerClass} />
+            )}
+          />
+          <Route
+            path="/home/cadastrofilmes"
+            render={routeProps => (
+              <CadastroFilmes {...routeProps} headerClass={headerClass} />
+            )}
+          />
+          <Route
+            path="/home/cadastrodiretores"
+            render={routeProps => (
+              <CadastroDiretores {...routeProps} headerClass={headerClass} />
+            )}
+          />
+          <Route
+            path="/home/userm"
+            render={routeProps => (
+              <UserManagement {...routeProps} headerClass={headerClass} />
+            )}
+          />
+          <Route
+            path="/diretores/:nome"
+            headerClass={headerClass}
+            component={diretoresView}
+          />
         </Switch>
         <Route path="/home/filmes/sinopse/:sinopse" component={SinopseView} />
       </main>

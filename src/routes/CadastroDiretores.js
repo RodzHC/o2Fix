@@ -214,7 +214,7 @@ export default class DiretoresAdmin extends Component {
   render() {
     return (
       <div>
-        <div className="header text-center">
+        <div className={`${this.props.headerClass}`}>
           <h1>Cadastro de Diretores</h1>
         </div>
         <div className="content" id="content">

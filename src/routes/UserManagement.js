@@ -15,10 +15,10 @@ export default class UserManagement extends Component {
   render() {
     return (
       <div>
+        <div className={`${this.props.headerClass}`}>
+          <h1>User Management</h1>
+        </div>
         <div className="content">
-          <div className="header text-center">
-            <h1>User Management</h1>
-          </div>
           <TabelaUsuarios />
         </div>
       </div>
