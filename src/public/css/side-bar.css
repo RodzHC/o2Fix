@@ -23,18 +23,26 @@ a[data-toggle="collapse"] {
   position: relative;
 }
 
-a[aria-expanded="false"]::before,
-a[aria-expanded="true"]::before {
-  content: "\e259";
+a[aria-expanded="false"]::before {
   display: block;
   position: absolute;
+  content: " ";
+  background-image: url("../fonts/fontawesome-free-5.0.10/advanced-options/raw-svg/solid/chevron-right.svg");
+  background-size: 20px 20px;
   right: 20px;
-  font-family: "Glyphicons Halflings";
-  font-size: 0.6em;
+  height: 20px;
+  width: 20px;
 }
 
 a[aria-expanded="true"]::before {
-  content: "\e260";
+  display: block;
+  position: absolute;
+  content: " ";
+  background-image: url("../fonts/fontawesome-free-5.0.10/advanced-options/raw-svg/solid/chevron-down.svg");
+  background-size: 20px 20px;
+  right: 20px;
+  height: 20px;
+  width: 20px;
 }
 
 @media (max-width: 768px) {

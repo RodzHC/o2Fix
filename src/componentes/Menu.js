@@ -35,6 +35,7 @@ export default class Menu extends Component {
             </li>
             <li>
               <a
+                className="fa"
                 href="#homeSubmenu"
                 data-toggle="collapse"
                 aria-expanded="false"
