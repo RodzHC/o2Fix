@@ -22,7 +22,7 @@ export default class IndexAdmin extends Component {
       <div className="wrapper">
         <Menu botao={this.state.button} />
 
-        <div id="content" className="center-block">
+        <div id="content">
           <button
             type="button"
             id="sidebarCollapse"
