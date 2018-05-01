@@ -16,6 +16,7 @@ export default class Diretores extends Component {
         <div className={`${this.props.headerClass}`}>
           <h1>Filmes</h1>
         </div>
+        <hr />
         <div className="content">
           <TabelaFilmes />
         </div>
