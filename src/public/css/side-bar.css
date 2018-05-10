@@ -10,11 +10,14 @@
 }
 
 #content {
-  padding-left: 270px;
+  padding-left: 250px;
   margin-left: auto;
   margin-right: auto;
+  transition: all 0.3s;
 }
-
+#content.active {
+  padding-left: 0px;
+}
 #sidebar.active {
   margin-left: -250px;
 }
@@ -47,13 +50,10 @@ a[aria-expanded="true"]::before {
 
 @media (max-width: 768px) {
   #content {
-    padding-left: 0;
+    padding-left: 0px;
   }
   #sidebar {
     margin-left: -250px;
-  }
-  #sidebar.active {
-    margin-left: 0;
   }
 }
 

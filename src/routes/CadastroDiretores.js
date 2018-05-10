@@ -217,7 +217,7 @@ export default class DiretoresAdmin extends Component {
         <div className={`${this.props.headerClass}`}>
           <h1>Cadastro de Diretores</h1>
         </div>
-        <div className="content" id="content">
+        <div className="content">
           <FormularioDiretores nacionalidade={this.state.nacionalidade} />
           <TabelaDiretores lista={this.state.diretores} />
         </div>
