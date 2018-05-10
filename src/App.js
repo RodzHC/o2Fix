@@ -4,39 +4,23 @@ import { Switch, Route, Redirect, Link } from "react-router-dom";
 import "./public/css/login.css";
 
 import FormCadastro from "./componentes/FormCadastro";
+import PrivateRoute from "./componentes/PrivateRoute";
+
 import Home from "./routes/Home";
 
 import Auth from "./utilitarios/autenticador.js";
+
+import { createStore, applyMiddleware } from "redux";
+import thunkMiddleware from "redux-thunk";
+
+import { content } from "./reducers/content";
+
+const store = createStore(content, applyMiddleware(thunkMiddleware));
 
 // const apiBaseUrl =
 //   process.env.NODE_ENV === "development" ? "http://localhost:3001/" : "/";
 
 const apiBaseUrl = "/";
-
-class PrivateRoute extends React.Component {
-  constructor() {
-    super();
-    this.state = { refresh: false };
-  }
-
-  render() {
-    const { component: Component, ...rest } = this.props;
-
-    const renderRoute = props => {
-      if (Auth.isAuthenticated) {
-        return <Component {...props} />;
-      }
-
-      const to = {
-        pathname: "/",
-        state: { from: props.location }
-      };
-
-      return <Redirect to={to} />;
-    };
-    return <Route {...rest} render={renderRoute} />;
-  }
-}
 
 export default class App extends Component {
   render() {
@@ -45,7 +29,7 @@ export default class App extends Component {
         <Switch>
           <Route exact path="/" component={FormLogin} />
           <Route path="/cadastro" component={FormCadastro} />
-          <PrivateRoute path="/home" component={Home} />
+          <PrivateRoute Auth={Auth} path="/home" component={Home} />
         </Switch>
       </main>
     );
