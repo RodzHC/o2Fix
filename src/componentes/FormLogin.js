@@ -2,14 +2,26 @@ import React, { Component } from "react";
 import "../public/css/login.css";
 import { Link, Redirect } from "react-router-dom";
 
-export default class FormComponent extends Component {
+import Auth from "../utilitarios/autenticador.js";
+
+export default class FormLogin extends Component {
   constructor() {
     super();
-    this.state = { msg: "", redirectToReferrer: false };
+    this.state = {
+      msg: "",
+      redirectToReferrer: false
+    };
+  }
+
+  componentWillMount() {
+    Auth.authenticate(() => {
+      this.setState({ redirectToReferrer: true });
+    });
   }
 
   envia(event) {
     event.preventDefault();
+
     const requestInfo = {
       method: "POST",
       body: JSON.stringify({
@@ -20,14 +32,14 @@ export default class FormComponent extends Component {
         "Content-type": "application/json"
       })
     };
-
-    fetch("http://localhost:3001/api/autentica", requestInfo)
+    console.log(this.props.apiBaseUrl);
+    fetch(`${this.props.apiBaseUrl}api/autentica`, requestInfo)
       .then(res => {
         return res.json();
       })
       .then(mid => {
         if (mid.success === false) {
-          var temp = mid.message;
+          const temp = mid.message;
           throw new Error(temp);
         } else if (mid.success === true) {
           this.setState({
@@ -36,6 +48,10 @@ export default class FormComponent extends Component {
             email: ""
           });
           localStorage.setItem("auth-token", mid.token);
+
+          Auth.authenticate(() => {
+            this.setState({ redirectToReferrer: true });
+          });
         }
       })
       .catch(error => {
@@ -45,7 +61,9 @@ export default class FormComponent extends Component {
   }
 
   render() {
-    const { from } = this.props.location.state || { from: { pathname: "/" } };
+    const { from } = this.props.location.state || {
+      from: { pathname: "/home" }
+    };
     const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer) {

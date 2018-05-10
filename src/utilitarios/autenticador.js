@@ -1,4 +1,5 @@
 const apiBaseUrl = "/";
+
 const Auth = {
   isAdmin: false,
   isAuthenticated: false,
