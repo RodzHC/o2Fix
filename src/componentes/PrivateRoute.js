@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect, Link } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
-export default class PrivateRoute extends React.Component {
+export default class PrivateRoute extends Component {
   constructor() {
     super();
     this.state = { refresh: false };

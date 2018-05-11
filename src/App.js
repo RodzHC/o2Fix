@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, Redirect, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import "./public/css/login.css";
 
@@ -16,11 +16,14 @@ import thunkMiddleware from "redux-thunk";
 
 import { content } from "./reducers/content";
 
-const store = createStore(content, applyMiddleware(thunkMiddleware));
-
-// const apiBaseUrl =
-//   process.env.NODE_ENV === "development" ? "http://localhost:3001/" : "/";
 const apiBaseUrl = "/";
+if (process.env.NODE_ENV === "development") {
+  const apiBaseUrl = "/";
+} else if (process.env.NODE_ENV === "production") {
+  const apiBaseUrl = "/";
+}
+
+const store = createStore(content, applyMiddleware(thunkMiddleware));
 
 export default class App extends Component {
   render() {
