@@ -14,7 +14,8 @@ class FormularioFilmes extends Component {
   }
 
   updateTabelaFilmes(filmes) {
-    PubSub.publish("atualiza-tabelaFilmes", { filmes });
+    console.log("entrando no updateTabelaFilmes");
+    PubSub.publish("atualiza-tabela-filmes", filmes);
   }
 
   handleFilmesSubmit(event) {
@@ -41,7 +42,7 @@ class FormularioFilmes extends Component {
           var temp = mid.message;
           throw new Error(temp);
         } else if (mid.success === true) {
-          this.updateTabelaFilmes(mid);
+          this.updateTabelaFilmes(mid.content);
         }
       })
       .catch(error => {

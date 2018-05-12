@@ -6,27 +6,30 @@ import { Route, Link } from "react-router-dom";
 export default class TabelaFilmes extends Component {
   constructor() {
     super();
-    this.state = { lista: [] };
+    this.state = { lista: [], showSpinner: true };
   }
 
-  componentDidMount() {
-    PubSub.subscribe(
-      "atualiza-tabelaFilmes",
-      function(topicName, filmes) {
-        this.setState({ lista: filmes.filmes.content });
-      }.bind(this)
-    );
+  componentWillMount() {
+    this.setState({ showSpinner: true });
 
     fetch("/api/filmes")
       .then(res => {
         return res.json();
       })
       .then(res => {
+        this.setState({ showSpinner: false });
+
         this.setState({ lista: res });
       })
       .catch(err => {
         console.log(err);
       });
+  }
+  componentDidMount() {
+    PubSub.subscribe("atualiza-tabela-filmes", (topicName, lista) => {
+      console.log(lista);
+      this.setState({ lista: lista });
+    });
   }
 
   render() {
@@ -78,6 +81,11 @@ export default class TabelaFilmes extends Component {
           </thead>
           {filmes}
         </table>
+        <img
+          src={require("../public/spinner.gif")}
+          id="spinner"
+          style={{ display: this.state.showSpinner ? "block" : "none" }}
+        />
       </div>
     );
   }

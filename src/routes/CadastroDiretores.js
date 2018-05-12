@@ -2,6 +2,8 @@ import $ from "jquery";
 import InputCustomizado from "../componentes/InputCustomizado";
 import React, { Component } from "react";
 import PubSub from "pubsub-js";
+import TabelaDiretores from "../componentes/TabelaDiretores";
+
 const apiBaseUrl = "/";
 class FormularioDiretores extends Component {
   constructor() {
@@ -26,9 +28,7 @@ class FormularioDiretores extends Component {
   }
 
   updateDirectors = list => {
-    console.log(list);
     PubSub.publish("atualiza-lista-diretores", list);
-    console.log("Chamou Atualização da lista");
     this.setState({
       diretorNome: "",
       diretorDataNascimento: "",
@@ -146,41 +146,6 @@ class FormularioDiretores extends Component {
   }
 }
 
-class TabelaDiretores extends Component {
-  render() {
-    var myObject = this.props.lista;
-
-    function Varredor(obj) {
-      var ar = [];
-
-      for (var key in obj) {
-        ar.push(
-          <tr key={obj[key]._id}>
-            <td>{obj[key].diretorNome}</td>
-            <td>{obj[key].diretorNacionalidade}</td>
-            <td>{obj[key].diretorDataNascimento}</td>
-          </tr>
-        );
-      }
-      return ar;
-    }
-    var diretoresTabela = Varredor(myObject);
-
-    return (
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Nacionalidade</th>
-            <th>Data de Nascimento (dd/mm/aaaa)</th>
-          </tr>
-        </thead>
-        <tbody>{diretoresTabela}</tbody>
-      </table>
-    );
-  }
-}
-
 export default class DiretoresAdmin extends Component {
   constructor() {
     super();
@@ -219,7 +184,7 @@ export default class DiretoresAdmin extends Component {
         </div>
         <div className="content">
           <FormularioDiretores nacionalidade={this.state.nacionalidade} />
-          <TabelaDiretores lista={this.state.diretores} />
+          <TabelaDiretores />
         </div>
       </div>
     );

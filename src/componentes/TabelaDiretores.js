@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PubSub from "pubsub-js";
 
 export default class TabelaDiretores extends Component {
   constructor() {
@@ -19,6 +20,12 @@ export default class TabelaDiretores extends Component {
       .catch(err => {
         console.log(err);
       });
+  }
+  componentDidMount() {
+    PubSub.subscribe("atualiza-lista-diretores", (topicName, lista) => {
+      console.log(lista);
+      this.setState({ lista: lista });
+    });
   }
 
   render() {
