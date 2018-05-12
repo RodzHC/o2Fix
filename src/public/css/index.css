@@ -3,3 +3,10 @@
   margin: 50px 100px 60px 60px;
   display: inline-block;
 }
+
+#spinner {
+  margin-left: 50%;
+  margin-right: 50%;
+  height: 50px;
+  width: 50px;
+}

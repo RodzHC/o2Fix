@@ -22,7 +22,7 @@ export default class Menu extends Component {
       <div>
         <div id="sidebar" className={this.props.botao}>
           <div id="dismiss">
-            <i class="glyphicon glyphicon-arrow-left" />
+            <i className="glyphicon glyphicon-arrow-left" />
           </div>
           <div id="menuHeader">
             <button
