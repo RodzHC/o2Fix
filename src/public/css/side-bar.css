@@ -11,8 +11,7 @@
 
 #content {
   padding-left: 250px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
   transition: all 0.3s;
 }
 #content.active {
@@ -20,6 +19,21 @@
 }
 #sidebar.active {
   margin-left: -250px;
+}
+#menuHeader {
+}
+#sidebarButton {
+  position: absolute;
+  left: 208px;
+  background-color: DodgerBlue; /* Blue background */
+  padding: 20px 20px; /* Some padding */
+  cursor: pointer; /* Mouse pointer on hover */
+  background-image: url("../fonts/fontawesome-free-5.0.10/advanced-options/raw-svg/solid/angle-double-left.svg");
+  background-repeat: no-repeat;
+  background-color: #007bff;
+}
+#sidebarButton:hover {
+  background-color: #0062cc;
 }
 
 a[data-toggle="collapse"] {

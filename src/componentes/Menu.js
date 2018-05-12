@@ -6,10 +6,15 @@ import LogoutButton from "./LogoutButton";
 import "../public/css/pure.css";
 import "../public/css/side-bar.css";
 
+import Pubsub from "pubsub-js";
+
 export default class Menu extends Component {
   constructor() {
     super();
     this.state = {};
+  }
+  changeButton() {
+    Pubsub.publish("botao-colapse");
   }
 
   render() {
@@ -19,8 +24,17 @@ export default class Menu extends Component {
           <div id="dismiss">
             <i class="glyphicon glyphicon-arrow-left" />
           </div>
-
-          <h3 className="sidebar-header">O2Fix</h3>
+          <div id="menuHeader">
+            <button
+              type="button"
+              id="sidebarButton"
+              className="btn"
+              onClick={this.changeButton.bind(this)}
+            >
+              <i className="fa fa-bars" />
+            </button>
+            <h3 className="sidebar-header">O2Fix</h3>
+          </div>
           <ul className="list-unstyled components">
             <li className="active">
               <Link href="#" className="pure-menu-link" to="/home/filmes">

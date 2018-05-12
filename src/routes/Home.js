@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import Menu from "../componentes/Menu";
 import Main from "./Main";
 
+import Pubsub from "pubsub-js";
+
 export default class IndexAdmin extends Component {
   constructor() {
     super();
@@ -11,10 +13,15 @@ export default class IndexAdmin extends Component {
   }
 
   changeButton() {
-    if (this.state.button == "") this.setState({ button: "active" });
-    else {
-      this.setState({ button: "" });
-    }
+    Pubsub.publish("botao-colapse");
+  }
+  componentWillMount() {
+    Pubsub.subscribe("botao-colapse", () => {
+      if (this.state.button == "") this.setState({ button: "active" });
+      else {
+        this.setState({ button: "" });
+      }
+    });
   }
 
   render() {
