@@ -33,7 +33,7 @@ const sinopseView = ({ match, history }) => {
         }}
       >
         <h1>Sinopse</h1>
-        <p>testetete</p>
+        <p>{match.params.sinopse}</p>
         <button type="button" onClick={back}>
           Close
         </button>

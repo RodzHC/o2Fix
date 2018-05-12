@@ -18,7 +18,7 @@ export default class Diretores extends Component {
           <hr className="headerLine" />
         </div>
         <div className="content">
-          <TabelaFilmes />
+          <TabelaFilmes location={this.props.location.pathname} />
         </div>
       </div>
     );

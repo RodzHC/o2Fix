@@ -4,9 +4,13 @@ import PubSub from "pubsub-js";
 import { Route, Link } from "react-router-dom";
 
 export default class TabelaFilmes extends Component {
-  constructor() {
-    super();
-    this.state = { lista: [], showSpinner: true };
+  constructor(props) {
+    super(props);
+    this.state = {
+      lista: [],
+      showSpinner: true,
+      location: this.props.location
+    };
   }
 
   componentWillMount() {
@@ -35,7 +39,7 @@ export default class TabelaFilmes extends Component {
   render() {
     var myObject = this.state.lista;
 
-    function Varredor(obj) {
+    function Varredor(obj, location) {
       var ar = [];
 
       for (var key in obj) {
@@ -46,7 +50,7 @@ export default class TabelaFilmes extends Component {
             <Link
               href="#"
               className="pure-menu-link"
-              to={`/home/filmes/sinopse/${obj[key].filmeSinopse}`}
+              to={`${location}/sinopse/${obj[key].filmeSinopse}`}
             >
               {`${obj[key].filmeSinopse.substring(0, 9)}...`}
             </Link>
@@ -66,7 +70,7 @@ export default class TabelaFilmes extends Component {
       return ar;
     }
 
-    var filmes = Varredor(myObject);
+    var filmes = Varredor(myObject, this.state.location);
 
     return (
       <div>

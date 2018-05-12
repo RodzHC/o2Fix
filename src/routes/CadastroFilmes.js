@@ -160,7 +160,7 @@ export default class FilmesControl extends Component {
         </div>
         <div className="content">
           <FormularioFilmes diretores={this.state.diretores} />
-          <TabelaFilmes />
+          <TabelaFilmes location={this.props.location.pathname} />
         </div>
       </div>
     );

@@ -60,6 +60,10 @@ export default class Main extends Component {
           />
         </Switch>
         <Route path="/home/filmes/sinopse/:sinopse" component={SinopseView} />
+        <Route
+          path="/home/cadastrofilmes/sinopse/:sinopse"
+          component={SinopseView}
+        />
       </main>
     );
   }
