@@ -16,15 +16,17 @@ export default class FormLogin extends Component {
 
   componentWillMount() {
     this.setState({ spinner: false });
-    Auth.authenticate(
-      () => {
-        this.setState({ spinner: true });
-        this.setState({ redirectToReferrer: true });
-      },
-      () => {
-        this.setState({ spinner: true });
-      }
-    );
+
+    var Autenticador = new Promise(function(resolve, reject) {
+      Auth.authenticate(resolve, reject);
+    });
+
+    Autenticador.then(() => {
+      this.setState({ spinner: true });
+      this.setState({ redirectToReferrer: true });
+    }).catch(() => {
+      this.setState({ spinner: true });
+    });
   }
 
   envia(event) {

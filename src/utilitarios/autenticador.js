@@ -50,7 +50,7 @@ const Auth = {
   isAdmin: false,
   isAuthenticated: false,
 
-  authenticate(callBack, error) {
+  authenticate(resolve, reject) {
     const req = {
       method: "POST",
       body: JSON.stringify({
@@ -67,7 +67,7 @@ const Auth = {
       })
       .then(mid => {
         if (mid.success === false) {
-          error();
+          reject();
           const err = mid.message;
           throw new Error(err);
         } else if (mid.success === true) {
@@ -76,7 +76,7 @@ const Auth = {
             this.isAdmin = true;
           }
 
-          callBack();
+          resolve();
         }
       })
       .catch(error => {
