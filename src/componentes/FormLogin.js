@@ -9,19 +9,27 @@ export default class FormLogin extends Component {
     super();
     this.state = {
       msg: "",
-      redirectToReferrer: false
+      redirectToReferrer: false,
+      spinner: true
     };
   }
 
   componentWillMount() {
-    Auth.authenticate(() => {
-      this.setState({ redirectToReferrer: true });
-    });
+    this.setState({ spinner: false });
+    Auth.authenticate(
+      () => {
+        this.setState({ spinner: true });
+        this.setState({ redirectToReferrer: true });
+      },
+      () => {
+        this.setState({ spinner: true });
+      }
+    );
   }
 
   envia(event) {
     event.preventDefault();
-
+    this.setState({ spinner: false });
     const requestInfo = {
       method: "POST",
       body: JSON.stringify({
@@ -71,34 +79,44 @@ export default class FormLogin extends Component {
     }
 
     return (
-      <div className="log-form">
-        <div>
-          <h2>Login</h2>
-          <span>{this.state.msg}</span>
-          <form onSubmit={this.envia.bind(this)} method="post">
-            <label>E-mail</label>
+      <div>
+        <img
+          src={require("../public/spinner.gif")}
+          id="spinnerLogin"
+          style={{ display: this.state.spinner ? "none" : "block" }}
+        />
+        <div
+          className="log-form"
+          style={{ display: this.state.spinner ? "block" : "none" }}
+        >
+          <div>
+            <h2>Login</h2>
+            <span>{this.state.msg}</span>
+            <form onSubmit={this.envia.bind(this)} method="post">
+              <label>E-mail</label>
 
-            <input
-              id="email"
-              type="email"
-              name="email"
-              ref={input => (this.email = input)}
-            />
-            <label>Senha</label>
-            <input
-              id="senha"
-              name="senha"
-              type="password"
-              ref={input => (this.senha = input)}
-            />
+              <input
+                id="email"
+                type="email"
+                name="email"
+                ref={input => (this.email = input)}
+              />
+              <label>Senha</label>
+              <input
+                id="senha"
+                name="senha"
+                type="password"
+                ref={input => (this.senha = input)}
+              />
 
-            <button type="submit" className="btn">
-              Login
-            </button>
-            <Link className="forgot" href="#" to="/cadastro">
-              Criar nova conta
-            </Link>
-          </form>
+              <button type="submit" className="btn">
+                Login
+              </button>
+              <Link className="forgot" href="#" to="/cadastro">
+                Criar nova conta
+              </Link>
+            </form>
+          </div>
         </div>
       </div>
     );

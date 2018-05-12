@@ -10,3 +10,9 @@
   height: 50px;
   width: 50px;
 }
+#spinnerLogin {
+  display: absolute;
+
+  margin: auto;
+  margin-top: 200px;
+}
