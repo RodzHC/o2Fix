@@ -29,7 +29,6 @@ if (process.env.NODE_ENV === "development") {
   console.log("Inicializando database-prod");
   database = config.databaseProduction;
 }
-
 mongoose.connect(database);
 const db = mongoose.connection;
 

@@ -11,16 +11,23 @@ import Pubsub from "pubsub-js";
 export default class Menu extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = { button: "" };
   }
   changeButton() {
-    Pubsub.publish("botao-colapse");
+    this.props.store.dispatch(dispach => {
+      dispach({ type: "CHANGE" });
+    });
+  }
+  componentWillMount() {
+    this.props.store.subscribe(() => {
+      this.setState({ button: this.props.store.getState().botao });
+    });
   }
 
   render() {
     return (
       <div>
-        <div id="sidebar" className={this.props.botao}>
+        <div id="sidebar" className={this.props.store.getState().botao}>
           <div id="dismiss">
             <i className="glyphicon glyphicon-arrow-left" />
           </div>

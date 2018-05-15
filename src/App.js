@@ -42,7 +42,7 @@ export default class App extends Component {
           <Route path="/cadastro" component={FormCadastro} />
           <PrivateRoute
             path="/home"
-            component={routeProps => <Home {...routeProps} />}
+            component={routeProps => <Home {...routeProps} store={store} />}
           />
         </Switch>
       </main>
