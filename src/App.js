@@ -16,11 +16,11 @@ import { content } from "./reducers/content";
 import { botao } from "./reducers/botao";
 import { autenticador } from "./reducers/autenticador";
 
-const apiBaseUrl = "/";
+var apiBaseUrl = "/";
 if (process.env.NODE_ENV === "development") {
-  const apiBaseUrl = "/";
+  apiBaseUrl = "/";
 } else if (process.env.NODE_ENV === "production") {
-  const apiBaseUrl = "/";
+  apiBaseUrl = "/";
 }
 
 const reducers = combineReducers({ content, botao, autenticador });

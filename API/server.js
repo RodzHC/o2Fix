@@ -19,7 +19,18 @@ var app = express();
 var port = 3001;
 app.set("superSecret", config.secret);
 
-mongoose.connect("mongodb://rodzhc:123@ds113179.mlab.com:13179/produ");
+var database = "";
+console.log("Inicializando database -------------------------------");
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === "development") {
+  console.log("Inicializando database-dev");
+  database = config.databaseDevelopment;
+} else if (process.env.NODE_ENV === "production") {
+  console.log("Inicializando database-prod");
+  database = config.databaseProduction;
+}
+
+mongoose.connect(database);
 const db = mongoose.connection;
 
 app.use(express.static("../build"));
