@@ -9,12 +9,12 @@ import PrivateRoute from "./componentes/PrivateRoute";
 
 import Home from "./routes/Home";
 
-import Auth from "./utilitarios/autenticador.js";
-
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunkMiddleware from "redux-thunk";
 
 import { content } from "./reducers/content";
+import { botao } from "./reducers/botao";
+import { autenticador } from "./reducers/autenticador";
 
 const apiBaseUrl = "/";
 if (process.env.NODE_ENV === "development") {
@@ -23,7 +23,9 @@ if (process.env.NODE_ENV === "development") {
   const apiBaseUrl = "/";
 }
 
-const store = createStore(content, applyMiddleware(thunkMiddleware));
+const reducers = combineReducers({ content, botao, autenticador });
+
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 export default class App extends Component {
   render() {
@@ -38,7 +40,10 @@ export default class App extends Component {
             )}
           />
           <Route path="/cadastro" component={FormCadastro} />
-          <PrivateRoute Auth={Auth} path="/home" component={Home} />
+          <PrivateRoute
+            path="/home"
+            component={routeProps => <Home {...routeProps} />}
+          />
         </Switch>
       </main>
     );

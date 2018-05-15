@@ -1,18 +1,40 @@
 import React, { Component } from "react";
 import InputCustomizado from "./InputCustomizado";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const apiBaseUrl = "/";
 
 export default class FormCadastro extends Component {
   constructor() {
     super();
-    this.state = { nome: "", email: "", senha: "", senhaCheck: "", msg: "" };
+    this.state = {
+      nome: "",
+      email: "",
+      senha: "",
+      senhaCheck: "",
+      msg: "",
+      redirectToLogin: false
+    };
     this.enviaForm = this.enviaForm.bind(this);
     this.setNome = this.setNome.bind(this);
     this.setEmail = this.setEmail.bind(this);
     this.setSenha = this.setSenha.bind(this);
     this.setSenhaCheck = this.setSenhaCheck.bind(this);
+  }
+  redirect() {
+    setTimeout(() => {
+      var n = 6;
+      const firstMsg = this.state.msg;
+
+      var interval = setInterval(() => {
+        n--;
+        this.setState({ msg: `${firstMsg} Redirecionando em : ${n}` });
+        if (n == 0) {
+          clearInterval(interval);
+          this.setState({ redirectToLogin: true });
+        }
+      }, 1000);
+    }, 2000);
   }
   componentDidMount() {
     document.title = "O2Fix - Cadastro";
@@ -48,6 +70,7 @@ export default class FormCadastro extends Component {
             senha: "",
             senhaCheck: ""
           });
+          this.redirect();
           return mid;
         }
       })
@@ -73,6 +96,10 @@ export default class FormCadastro extends Component {
   }
 
   render() {
+    const loginPath = { pathname: "/" };
+    if (this.state.redirectToLogin) {
+      return <Redirect to={loginPath} />;
+    }
     return (
       <div className="log-form">
         <div>

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 
+import Auth from "../utilitarios/autenticador";
+
 export default class PrivateRoute extends Component {
   constructor() {
     super();
@@ -8,10 +10,11 @@ export default class PrivateRoute extends Component {
   }
 
   render() {
+    console.log(Auth);
     const { component: Component, ...rest } = this.props;
 
     const renderRoute = props => {
-      if (this.props.Auth.isAuthenticated) {
+      if (Auth.isAuthenticated) {
         return <Component {...props} />;
       }
 

@@ -8,9 +8,9 @@ export default class FormLogin extends Component {
   constructor() {
     super();
     this.state = {
-      msg: "",
       redirectToReferrer: false,
-      spinner: true
+      spinner: true,
+      msg: ""
     };
   }
 
@@ -22,8 +22,7 @@ export default class FormLogin extends Component {
     });
 
     Autenticador.then(() => {
-      this.setState({ spinner: true });
-      this.setState({ redirectToReferrer: true });
+      this.setState({ redirectToReferrer: true, spinner: true });
     }).catch(() => {
       this.setState({ spinner: true });
     });
@@ -59,13 +58,21 @@ export default class FormLogin extends Component {
           });
           localStorage.setItem("auth-token", mid.token);
 
-          Auth.authenticate(() => {
-            this.setState({ redirectToReferrer: true });
+          var Autenticador = new Promise(function(resolve, reject) {
+            Auth.authenticate(resolve, reject);
+          });
+
+          Autenticador.then(() => {
+            this.setState({ redirectToReferrer: true, spinner: true });
+          }).catch(() => {
+            this.setState({ spinner: true });
           });
         }
       })
       .catch(error => {
         console.log(error);
+        this.setState({ spinner: true });
+
         this.setState({ msg: error.message });
       });
   }
@@ -75,6 +82,8 @@ export default class FormLogin extends Component {
       from: { pathname: "/home" }
     };
     const { redirectToReferrer } = this.state;
+
+    console.log(redirectToReferrer);
 
     if (redirectToReferrer) {
       return <Redirect to={from} />;
